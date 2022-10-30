@@ -17,9 +17,20 @@ library(here)
 
 ```{r}
 # import the data set
-temperature <- read.csv(here("Data", "Peltiertempanalysis10-30.csv"))
+temp <- read.csv(here("Data", "Peltiertempanalysis10-30.csv"))
 
 # open the dataset to check and make sure it is the correct one
-View(temperature)
+View(temp)
+```
+
+```{r}
+# plot a scatter plot that will give us an idea of the differences between the two conditions
+
+ggplot(temp,
+       aes(x = Time_sec, y = Avg, colour = Type))+
+     geom_point()+
+     xlab("Time (sec)")+
+     ylab("Temperature (C)")+
+     theme_bw()
 ```
 
