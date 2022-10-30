@@ -34,3 +34,7 @@ ggplot(temp,
      theme_bw()
 ```
 
+```{r}
+# perform two sample t test
+t.test(Avg ~ Type, data = temp)
+```
