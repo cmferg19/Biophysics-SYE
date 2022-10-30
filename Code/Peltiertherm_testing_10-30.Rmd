@@ -1,0 +1,25 @@
+---
+title: "Peltier and Thermistor Temperature testing 10-30"
+output: html_notebook
+---
+
+For this trial I made some modifications to the Arduino control system. Instead of increasing based on the starting temperature of the peltier.  It is set to increase at a constant rate for 8 seconds before the thermistor turns on.  When the thermistor turns on, it starts modulating the temperature (for which I bumped down the threshold).  Let's see how this impacted the data between the control condition and the magnetic field condition.
+
+```{r}
+# clear R's environment window
+rm(list = ls())
+
+# import the libraries that we will need
+library(ggplot2)
+library(dplyr)
+library(here)
+```
+
+```{r}
+# import the data set
+temperature <- read.csv(here("Data", "Peltiertempanalysis10-30.csv"))
+
+# open the dataset to check and make sure it is the correct one
+View(temperature)
+```
+

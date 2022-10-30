@@ -53,4 +53,3 @@ t.test(Avg ~ Type, data = temp)
 
 
 
-
