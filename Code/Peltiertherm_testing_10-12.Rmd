@@ -31,6 +31,19 @@ temp <- read.csv(here("Data", "Peltiertempanalysis10-28.csv"))
 View(temp)
 ```
 
+To compare the average means between the magnetic field and non magnetic field conditions, we can perform a two sample t test. This will give us a quick look at the differences between the two conditions
+
+```{r}
+# plot a scatter plot that will give us an idea of the differences between the two conditions
+
+ggplot(temp,
+       aes(x = Time_sec, y = Avg, colour = Type))+
+     geom_point()+
+     xlab("Time (sec)")+
+     ylab("Temperature (C)")+
+     theme_bw()
+
+```
 
 
 
