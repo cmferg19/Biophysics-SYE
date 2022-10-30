@@ -1,0 +1,11 @@
+---
+title: "Peltier and Thermistor Testing 10-29-2022"
+output: html_notebook
+---
+# Overview
+The goal of this code is to analyze the differences between temperature readings of the Peltier inside of the magnetic field and outside of the magnetic field.  For this trial, the magnetic field conditions were as follows:
+
+V = 6.2 Volts
+I = 2.42 Amps
+
+These trials were performed with the "peltiercontrolwiththerm" Arduino code which took the starting temperature of the Peltier and calculated the voltage needed to be applied in order to get to the target temperature of 37 degrees C.  
