@@ -44,6 +44,12 @@ ggplot(temp,
      theme_bw()
 
 ```
+Upon first glance, it looks like there may be a difference between the conditions in the magnetic field and outside of the magnetic field.  Let's perform a two sample t test to find out. 
+ 
+```{r}
+# perform two sample t test
+t.test(Avg ~ Type, data = temp)
+```
 
 
 
