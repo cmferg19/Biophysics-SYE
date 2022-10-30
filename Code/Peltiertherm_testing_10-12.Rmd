@@ -8,4 +8,30 @@ The goal of this code is to analyze the differences between temperature readings
 V = 6.2 Volts
 I = 2.42 Amps
 
-These trials were performed with the "peltiercontrolwiththerm" Arduino code which took the starting temperature of the Peltier and calculated the voltage needed to be applied in order to get to the target temperature of 37 degrees C.  
+These trials were performed with the "peltiercontrolwiththerm" Arduino code which took the starting temperature of the Peltier and calculated the voltage needed to be applied in order to get to the target temperature of 37 degrees C.  Because the starting temperature of the Arduino was not always consistent, the voltage applied to the peltier was inconsistent.  I believe that this contributed to the significnat temperature swings that I observed but let's see if this is supported statistically. 
+
+```{r}
+# clear the environment window
+rm(list = ls())
+
+# import the libraries that we will need
+library(ggplot2)
+library(dplyr)
+library(here)
+```
+Now I will import the data that I took from those trials. The data is separated into trials and consists all of temperatures calculated in degrees C.
+  - Ex:t1_o referring to trial 1 out of magnetic field
+  - Ex:t3_m referring to trial 3 inside of magnetic field
+  
+```{r}
+# import the data and call it temp
+temp <- read.csv(here("Data", "Peltiertempanalysis10-28.csv"))
+
+# open the data in a new window to take a look at it
+View(temp)
+```
+
+
+
+
+

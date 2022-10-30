@@ -1779,11 +1779,58 @@ conditions were as follows:</p>
 <p>These trials were performed with the “peltiercontrolwiththerm”
 Arduino code which took the starting temperature of the Peltier and
 calculated the voltage needed to be applied in order to get to the
-target temperature of 37 degrees C.</p>
+target temperature of 37 degrees C. Because the starting temperature of
+the Arduino was not always consistent, the voltage applied to the
+peltier was inconsistent. I believe that this contributed to the
+significnat temperature swings that I observed but let’s see if this is
+supported statistically.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbGVhciB0aGUgZW52aXJvbm1lbnQgd2luZG93XG5ybShsaXN0ID0gbHMoKSlcblxuIyBpbXBvcnQgdGhlIGxpYnJhcmllcyB0aGF0IHdlIHdpbGwgbmVlZFxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code># clear the environment window
+rm(list = ls())
+
+# import the libraries that we will need
+library(ggplot2)
+library(dplyr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShoZXJlKVxuYGBgIn0= -->
+<pre class="r"><code>library(here)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiaGVyZSgpIHN0YXJ0cyBhdCBDOi9Vc2Vycy9jbWZzcC9PbmVEcml2ZSAtIFN0LiBMYXdyZW5jZSBVbml2ZXJzaXR5LzIwMjItMjAyMyBBY2FkZW1pYyBZZWFyL1Jlc2VhcmNoL1NZRS9Db2RlL0Jpb3BoeXNpY3MtU1lFXG4ifQ== -->
+<pre><code>here() starts at C:/Users/cmfsp/OneDrive - St. Lawrence University/2022-2023 Academic Year/Research/SYE/Code/Biophysics-SYE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now I will import the data that I took from those trials. The data is
+separated into trials and consists all of temperatures calculated in
+degrees C. - Ex:t1_o referring to trial 1 out of magnetic field -
+Ex:t3_m referring to trial 3 inside of magnetic field</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpbXBvcnQgdGhlIGRhdGEgYW5kIGNhbGwgaXQgdGVtcFxudGVtcCA8LSByZWFkLmNzdihoZXJlKFwiRGF0YVwiLCBcIlBlbHRpZXJ0ZW1wYW5hbHlzaXMxMC0yOC5jc3ZcIikpXG5WaWV3KHRlbXApXG5gYGAifQ== -->
+<pre class="r"><code># import the data and call it temp
+temp &lt;- read.csv(here(&quot;Data&quot;, &quot;Peltiertempanalysis10-28.csv&quot;))
+View(temp)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlBlbHRpZXIgYW5kIFRoZXJtaXN0b3IgVGVzdGluZyAxMC0yOS0yMDIyIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCiMgT3ZlcnZpZXcNClRoZSBnb2FsIG9mIHRoaXMgY29kZSBpcyB0byBhbmFseXplIHRoZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRlbXBlcmF0dXJlIHJlYWRpbmdzIG9mIHRoZSBQZWx0aWVyIGluc2lkZSBvZiB0aGUgbWFnbmV0aWMgZmllbGQgYW5kIG91dHNpZGUgb2YgdGhlIG1hZ25ldGljIGZpZWxkLiAgRm9yIHRoaXMgdHJpYWwsIHRoZSBtYWduZXRpYyBmaWVsZCBjb25kaXRpb25zIHdlcmUgYXMgZm9sbG93czoNCg0KViA9IDYuMiBWb2x0cw0KSSA9IDIuNDIgQW1wcw0KDQpUaGVzZSB0cmlhbHMgd2VyZSBwZXJmb3JtZWQgd2l0aCB0aGUgInBlbHRpZXJjb250cm9sd2l0aHRoZXJtIiBBcmR1aW5vIGNvZGUgd2hpY2ggdG9vayB0aGUgc3RhcnRpbmcgdGVtcGVyYXR1cmUgb2YgdGhlIFBlbHRpZXIgYW5kIGNhbGN1bGF0ZWQgdGhlIHZvbHRhZ2UgbmVlZGVkIHRvIGJlIGFwcGxpZWQgaW4gb3JkZXIgdG8gZ2V0IHRvIHRoZSB0YXJnZXQgdGVtcGVyYXR1cmUgb2YgMzcgZGVncmVlcyBDLiAg</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlBlbHRpZXIgYW5kIFRoZXJtaXN0b3IgVGVzdGluZyAxMC0yOS0yMDIyIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCiMgT3ZlcnZpZXcNClRoZSBnb2FsIG9mIHRoaXMgY29kZSBpcyB0byBhbmFseXplIHRoZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRlbXBlcmF0dXJlIHJlYWRpbmdzIG9mIHRoZSBQZWx0aWVyIGluc2lkZSBvZiB0aGUgbWFnbmV0aWMgZmllbGQgYW5kIG91dHNpZGUgb2YgdGhlIG1hZ25ldGljIGZpZWxkLiAgRm9yIHRoaXMgdHJpYWwsIHRoZSBtYWduZXRpYyBmaWVsZCBjb25kaXRpb25zIHdlcmUgYXMgZm9sbG93czoNCg0KViA9IDYuMiBWb2x0cw0KSSA9IDIuNDIgQW1wcw0KDQpUaGVzZSB0cmlhbHMgd2VyZSBwZXJmb3JtZWQgd2l0aCB0aGUgInBlbHRpZXJjb250cm9sd2l0aHRoZXJtIiBBcmR1aW5vIGNvZGUgd2hpY2ggdG9vayB0aGUgc3RhcnRpbmcgdGVtcGVyYXR1cmUgb2YgdGhlIFBlbHRpZXIgYW5kIGNhbGN1bGF0ZWQgdGhlIHZvbHRhZ2UgbmVlZGVkIHRvIGJlIGFwcGxpZWQgaW4gb3JkZXIgdG8gZ2V0IHRvIHRoZSB0YXJnZXQgdGVtcGVyYXR1cmUgb2YgMzcgZGVncmVlcyBDLiAgQmVjYXVzZSB0aGUgc3RhcnRpbmcgdGVtcGVyYXR1cmUgb2YgdGhlIEFyZHVpbm8gd2FzIG5vdCBhbHdheXMgY29uc2lzdGVudCwgdGhlIHZvbHRhZ2UgYXBwbGllZCB0byB0aGUgcGVsdGllciB3YXMgaW5jb25zaXN0ZW50LiAgSSBiZWxpZXZlIHRoYXQgdGhpcyBjb250cmlidXRlZCB0byB0aGUgc2lnbmlmaWNuYXQgdGVtcGVyYXR1cmUgc3dpbmdzIHRoYXQgSSBvYnNlcnZlZCBidXQgbGV0J3Mgc2VlIGlmIHRoaXMgaXMgc3VwcG9ydGVkIHN0YXRpc3RpY2FsbHkuIA0KDQpgYGB7cn0NCiMgY2xlYXIgdGhlIGVudmlyb25tZW50IHdpbmRvdw0Kcm0obGlzdCA9IGxzKCkpDQoNCiMgaW1wb3J0IHRoZSBsaWJyYXJpZXMgdGhhdCB3ZSB3aWxsIG5lZWQNCmxpYnJhcnkoZ2dwbG90MikNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KGhlcmUpDQpgYGANCk5vdyBJIHdpbGwgaW1wb3J0IHRoZSBkYXRhIHRoYXQgSSB0b29rIGZyb20gdGhvc2UgdHJpYWxzLiBUaGUgZGF0YSBpcyBzZXBhcmF0ZWQgaW50byB0cmlhbHMgYW5kIGNvbnNpc3RzIGFsbCBvZiB0ZW1wZXJhdHVyZXMgY2FsY3VsYXRlZCBpbiBkZWdyZWVzIEMuDQogIC0gRXg6dDFfbyByZWZlcnJpbmcgdG8gdHJpYWwgMSBvdXQgb2YgbWFnbmV0aWMgZmllbGQNCiAgLSBFeDp0M19tIHJlZmVycmluZyB0byB0cmlhbCAzIGluc2lkZSBvZiBtYWduZXRpYyBmaWVsZA0KICANCmBgYHtyfQ0KIyBpbXBvcnQgdGhlIGRhdGEgYW5kIGNhbGwgaXQgdGVtcA0KdGVtcCA8LSByZWFkLmNzdihoZXJlKCJEYXRhIiwgIlBlbHRpZXJ0ZW1wYW5hbHlzaXMxMC0yOC5jc3YiKSkNCg0KIyBvcGVuIHRoZSBkYXRhIGluIGEgbmV3IHdpbmRvdyB0byB0YWtlIGEgbG9vayBhdCBpdA0KVmlldyh0ZW1wKQ0KYGBgDQoNCg0KDQoNCg0K</div>
 
 
 
