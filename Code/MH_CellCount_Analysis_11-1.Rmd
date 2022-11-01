@@ -25,4 +25,9 @@ counts <- read.csv(here("Data", "MH_Cellcountdata_11-1.csv"),stringsAsFactors = 
 glimpse(counts)
 ```
 
+```{r}
+# calculate the means of the count data and put in a new column
+counts = mutate(counts, Mean_counts = ((Count_1+ Count_2+ Count_3+ Count_4+ Count_5+ Count_6+ Count_7+ Count_8)/8))
+
+```
 
