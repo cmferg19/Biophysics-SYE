@@ -38,3 +38,5 @@ ggplot(temp,
 # perform two sample t test
 t.test(Avg ~ Type, data = temp)
 ```
+
+

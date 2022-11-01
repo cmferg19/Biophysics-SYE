@@ -1,0 +1,12 @@
+﻿Day,Condition,Sample,Time_of_day,Count_1,Count_2,Count_3,Count_4,Count_5,Count_6,Count_7,Count_8
+10/31/2022,Control,1,Afternoon,226,199,334,214,247,229,300,296
+10/31/2022,EMF,2,Afternoon,329,270,204,342,200,177,195,253
+10/31/2022,EMF,3,Afternoon,237,227,171,341,272,308,263,232
+11/1/2022,Control,1,Morning,484,471,530,553,277,435,500,499
+11/1/2022,EMF,2,Morning,508,590,604,752,484,636,654,612
+11/1/2022,EMF,3,Morning,530,608,648,626,892,406,528,602
+11/1/2022,Control,1,Afternoon,,,,,,,,
+11/1/2022,EMF,2,Afternoon,,,,,,,,
+11/1/2022,EMF,3,Afternoon,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,

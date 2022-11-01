@@ -1,0 +1,28 @@
+---
+title: "Mouse Hippocampal Cell Count Data Analysis"
+output: html_notebook
+---
+
+This code is designed to analyze the cell count data from the first experimental trial after putting mouse hippocampal cells in the EMF for 30 mins.  The goal of this trial is to measure survivalbility of these cells and ensure that the current protocol won't kill these neural cells before we try with C17.2 stem cells. 
+
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+
+```
+
+
+```{r}
+# import the data set that we will be analysing, the stringsAsFactors = True argument converts categorical data to factors so we can analyse the levels
+counts <- read.csv(here("Data", "MH_Cellcountdata_11-1.csv"),stringsAsFactors = TRUE)
+
+# take a look at the structure of the data
+glimpse(counts)
+```
+
+
