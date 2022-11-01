@@ -26,8 +26,23 @@ glimpse(counts)
 ```
 
 ```{r}
-# calculate the means of the count data and put in a new column
-counts = mutate(counts, Mean_counts = ((Count_1+ Count_2+ Count_3+ Count_4+ Count_5+ Count_6+ Count_7+ Count_8)/8))
+# convert the sample to factor data
 
+counts$Sample<-as.factor(counts$Sample) #convert to factor data type
+levels(counts$Sample) #view levels of factor
 ```
+
+Now I am going to create a boxplot of the data to visualize the spread and get a better idea of the distribution.
+```{r}
+# make a box plot of the data
+ggplot(counts, aes(x = Sample, y = Counts)) +
+geom_boxplot()+
+  geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
+  facet_wrap(~Day)
+  ylab("Sample") +
+  xlab("Cell count (cells/mm^2")
+```
+
+
+
 
