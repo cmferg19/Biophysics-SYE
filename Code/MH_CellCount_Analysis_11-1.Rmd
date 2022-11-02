@@ -26,19 +26,19 @@ glimpse(counts)
 ```
 
 ```{r}
-# convert the sample to factor data
+# convert the count trial to factor data
 
-counts$Sample<-as.factor(counts$Sample) #convert to factor data type
-levels(counts$Sample) #view levels of factor
+counts$Count_trial<-as.factor(counts$Count_trial) #convert to factor data type
+levels(counts$Count_trial) #view levels of factor
 ```
 
 Now I am going to create a boxplot of the data to visualize the spread and get a better idea of the distribution.
 ```{r}
 # make a box plot of the data
-ggplot(counts, aes(x = Sample, y = Counts)) +
+ggplot(counts, aes(x = Condition, y = Counts)) +
 geom_boxplot()+
   geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
-  facet_wrap(~Day)+
+  facet_wrap(~Count_trial)+
   xlab("Sample") +
   ylab("Cell counts (cells/mm^2)")
 ```

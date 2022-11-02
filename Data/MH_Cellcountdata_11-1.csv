@@ -1,49 +1,73 @@
-﻿Day,Condition,Sample,Time_of_day,Counts
-10/31/2022,Control,1,Afternoon,199
-10/31/2022,Control,1,Afternoon,334
-10/31/2022,Control,1,Afternoon,226
-10/31/2022,Control,1,Afternoon,214
-10/31/2022,Control,1,Afternoon,247
-10/31/2022,Control,1,Afternoon,229
-10/31/2022,Control,1,Afternoon,300
-10/31/2022,Control,1,Afternoon,296
-10/31/2022,EMF_1,2,Afternoon,270
-10/31/2022,EMF_1,2,Afternoon,204
-10/31/2022,EMF_1,2,Afternoon,342
-10/31/2022,EMF_1,2,Afternoon,200
-10/31/2022,EMF_1,2,Afternoon,177
-10/31/2022,EMF_1,2,Afternoon,195
-10/31/2022,EMF_1,2,Afternoon,253
-10/31/2022,EMF_1,2,Afternoon,329
-10/31/2022,EMF_2,3,Afternoon,227
-10/31/2022,EMF_2,3,Afternoon,171
-10/31/2022,EMF_2,3,Afternoon,341
-10/31/2022,EMF_2,3,Afternoon,272
-10/31/2022,EMF_2,3,Afternoon,308
-10/31/2022,EMF_2,3,Afternoon,263
-10/31/2022,EMF_2,3,Afternoon,232
-10/31/2022,EMF_2,3,Afternoon,237
-11/1/2022,Control,1,Morning,484
-11/1/2022,Control,1,Morning,471
-11/1/2022,Control,1,Morning,530
-11/1/2022,Control,1,Morning,553
-11/1/2022,Control,1,Morning,277
-11/1/2022,Control,1,Morning,435
-11/1/2022,Control,1,Morning,500
-11/1/2022,Control,1,Morning,499
-11/1/2022,EMF_1,2,Morning,508
-11/1/2022,EMF_1,2,Morning,590
-11/1/2022,EMF_1,2,Morning,604
-11/1/2022,EMF_1,2,Morning,752
-11/1/2022,EMF_1,2,Morning,484
-11/1/2022,EMF_1,2,Morning,636
-11/1/2022,EMF_1,2,Morning,654
-11/1/2022,EMF_1,2,Morning,612
-11/1/2022,EMF_2,3,Morning,530
-11/1/2022,EMF_2,3,Morning,608
-11/1/2022,EMF_2,3,Morning,848
-11/1/2022,EMF_2,3,Morning,626
-11/1/2022,EMF_2,3,Morning,892
-11/1/2022,EMF_2,3,Morning,408
-11/1/2022,EMF_2,3,Morning,528
-11/1/2022,EMF_2,3,Morning,602
+﻿Day,Condition,Count_trial,Time_of_day,Counts
+10/31/2022,Control,1,Before,199
+10/31/2022,Control,1,Before,334
+10/31/2022,Control,1,Before,226
+10/31/2022,Control,1,Before,214
+10/31/2022,Control,1,Before,247
+10/31/2022,Control,1,Before,229
+10/31/2022,Control,1,Before,300
+10/31/2022,Control,1,Before,296
+10/31/2022,EMF_1,1,Before,270
+10/31/2022,EMF_1,1,Before,204
+10/31/2022,EMF_1,1,Before,342
+10/31/2022,EMF_1,1,Before,200
+10/31/2022,EMF_1,1,Before,177
+10/31/2022,EMF_1,1,Before,195
+10/31/2022,EMF_1,1,Before,253
+10/31/2022,EMF_1,1,Before,329
+10/31/2022,EMF_2,1,Before,227
+10/31/2022,EMF_2,1,Before,171
+10/31/2022,EMF_2,1,Before,341
+10/31/2022,EMF_2,1,Before,272
+10/31/2022,EMF_2,1,Before,308
+10/31/2022,EMF_2,1,Before,263
+10/31/2022,EMF_2,1,Before,232
+10/31/2022,EMF_2,1,Before,237
+11/1/2022,Control,2,Count Morning,484
+11/1/2022,Control,2,Count Morning,471
+11/1/2022,Control,2,Count Morning,530
+11/1/2022,Control,2,Count Morning,553
+11/1/2022,Control,2,Count Morning,277
+11/1/2022,Control,2,Count Morning,435
+11/1/2022,Control,2,Count Morning,500
+11/1/2022,Control,2,Count Morning,499
+11/1/2022,EMF_1,2,Count Morning,508
+11/1/2022,EMF_1,2,Count Morning,590
+11/1/2022,EMF_1,2,Count Morning,604
+11/1/2022,EMF_1,2,Count Morning,752
+11/1/2022,EMF_1,2,Count Morning,484
+11/1/2022,EMF_1,2,Count Morning,636
+11/1/2022,EMF_1,2,Count Morning,654
+11/1/2022,EMF_1,2,Count Morning,612
+11/1/2022,EMF_2,2,Count Morning,530
+11/1/2022,EMF_2,2,Count Morning,608
+11/1/2022,EMF_2,2,Count Morning,848
+11/1/2022,EMF_2,2,Count Morning,626
+11/1/2022,EMF_2,2,Count Morning,892
+11/1/2022,EMF_2,2,Count Morning,408
+11/1/2022,EMF_2,2,Count Morning,528
+11/1/2022,EMF_2,2,Count Morning,602
+11/1/2022,Control,3,Count Afternoon,173
+11/1/2022,Control,3,Count Afternoon,294
+11/1/2022,Control,3,Count Afternoon,273
+11/1/2022,Control,3,Count Afternoon,342
+11/1/2022,Control,3,Count Afternoon,393
+11/1/2022,Control,3,Count Afternoon,474
+11/1/2022,Control,3,Count Afternoon,232
+11/1/2022,Control,3,Count Afternoon,243
+11/1/2022,EMF_1,3,Count Afternoon,630
+11/1/2022,EMF_1,3,Count Afternoon,504
+11/1/2022,EMF_1,3,Count Afternoon,532
+11/1/2022,EMF_1,3,Count Afternoon,476
+11/1/2022,EMF_1,3,Count Afternoon,640
+11/1/2022,EMF_1,3,Count Afternoon,519
+11/1/2022,EMF_1,3,Count Afternoon,368
+11/1/2022,EMF_1,3,Count Afternoon,576
+11/1/2022,EMF_2,3,Count Afternoon,436
+11/1/2022,EMF_2,3,Count Afternoon,464
+11/1/2022,EMF_2,3,Count Afternoon,494
+11/1/2022,EMF_2,3,Count Afternoon,560
+11/1/2022,EMF_2,3,Count Afternoon,305
+11/1/2022,EMF_2,3,Count Afternoon,464
+11/1/2022,EMF_2,3,Count Afternoon,462
+11/1/2022,EMF_2,3,Count Afternoon,496
