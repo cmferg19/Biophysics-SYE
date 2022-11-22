@@ -1,0 +1,42 @@
+---
+title: "Cell Count analysis 11-16"
+output: html_notebook
+---
+
+The data taken on 11-16 which was the week before thanksgiving.  Prior to these cells being exposed to the magnetic field, the incubator ran out of CO2.  This happened Wednesday morning which was the day of the trials.  I ended up moving the cells to Ana's incubator in the morning and then taking them out again later that afternoon for the magnetic field exposure. 
+
+These cells were seeded Monday afternoon, left to grow on Tuesday, and then experimental exposure started on Wednesday. Counts were performed Wednesday before the exposure and during exposure, cells that were not undergoing the treatment were placed in the incubator.
+
+```{r}
+# clear the environment window
+rm(list = ls())
+
+# include the libraries that we need
+library(ggplot2)
+library(tidyverse)
+library(here)
+library(lubridate)
+```
+
+Now we will import the dataset
+
+```{r}
+DF <- read.csv(here("Data", "Cellcountdata_11-16_11-18.csv"), stringsAsFactors = TRUE)
+```
+
+```{r}
+# reassign the date variable to make r recognize the date as dates
+#DF <- DF %>% mdy(Date)
+```
+
+Now let's take a look at the spread of the data with a boxplot real quick
+```{r}
+# make a box plot of the data
+ggplot(DF, aes(x = Condition, y = Cells)) +
+geom_boxplot()+
+  geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
+  facet_wrap(~Date)+
+  xlab("Sample") +
+  ylab("Cell counts (cells/mm^2)")
+```
+

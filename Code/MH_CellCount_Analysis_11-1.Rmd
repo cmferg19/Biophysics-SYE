@@ -1,5 +1,5 @@
 ---
-title: "Mouse Hippocampal Cell Count Data Analysis"
+title: "Mouse Hippocampal Cell Count Data Analysis for 11-1"
 output: html_notebook
 ---
 
@@ -27,12 +27,15 @@ glimpse(counts)
 
 ```{r}
 # convert the count trial to factor data
+counts$Count_trial<-as.factor(counts$Count_trial) 
 
-counts$Count_trial<-as.factor(counts$Count_trial) #convert to factor data type
-levels(counts$Count_trial) #view levels of factor
+
+# select the first two counts (before and after the EMF exposure) because the third count is skewed due to the lack of CO2 that the cells were exposed to between the 2nd and 3rd counts
+
+counts <- counts %>% filter(Count_trial == c("1", "2"))
 ```
 
-Now I am going to create a boxplot of the data to visualize the spread and get a better idea of the distribution.
+Now I am going to create a box plot of the data to visualize the spread and get a better idea of the distribution.
 ```{r}
 # make a box plot of the data
 ggplot(counts, aes(x = Condition, y = Counts)) +
