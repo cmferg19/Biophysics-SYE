@@ -3,7 +3,9 @@ title: "Mouse Hippocampal Cell Count Data Analysis for 11-1"
 output: html_notebook
 ---
 
-This code is designed to analyze the cell count data from the first experimental trial after putting mouse hippocampal cells in the EMF for 30 mins.  The goal of this trial is to measure survivalbility of these cells and ensure that the current protocol won't kill these neural cells before we try with C17.2 stem cells. 
+This code is designed to analyze the cell count data from the first experimental trial after putting mouse hippocampal cells in the EMF for 30 mins.  The goal of this trial is to measure survivalbility of these cells and ensure that the current protocol won't kill these neural cells before we try with C17.2 stem cells.
+
+These cells were seeded at 35,000 cells/plate and the media was changed the morning of experimental trials. 
 
 ```{r}
 # clear the environment
@@ -13,6 +15,7 @@ rm(list = ls())
 library(ggplot2)
 library(dplyr)
 library(here)
+library(ggfortify)
 
 ```
 
@@ -33,6 +36,9 @@ counts$Count_trial<-as.factor(counts$Count_trial)
 # select the first two counts (before and after the EMF exposure) because the third count is skewed due to the lack of CO2 that the cells were exposed to between the 2nd and 3rd counts
 
 counts <- counts %>% filter(Count_trial == c("1", "2"))
+
+# recode the counts to be before and after exposure
+counts$Count_trial <- recode(counts$Count_trial, "1" = 'Before Exposure', "2" = 'After Exposure')
 ```
 
 Now I am going to create a box plot of the data to visualize the spread and get a better idea of the distribution.
@@ -44,6 +50,36 @@ geom_boxplot()+
   facet_wrap(~Count_trial)+
   xlab("Sample") +
   ylab("Cell counts (cells/mm^2)")
+```
+Ok, now we are going to calculate the means for these and plot them on a new graph that is a little prettier. 
+```{r}
+# reassign the values of the different EMF conditions to combine them
+counts$Condition <- recode(counts$Condition, EMF_1 = 'B-Field', EMF_2 = 'B-Field', Control = 'Control')
+
+```
+
+
+```{r}
+# find the means of the cell counts and put them in a new table
+mean_counts <- counts %>% group_by(Condition,Count_trial) %>% summarise(
+  meancounts = mean(Counts),
+  secounts = sd(Counts)/sqrt(sum(!is.na(Counts))                                                             ))
+```
+Now we will make a scatterplot with this data and seperate it based on the count
+
+```{r}
+# create scatterplot with error bars
+ggplot(mean_counts, aes(Condition, meancounts, color = Count_trial))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    facet_wrap(~Count_trial)+
+    theme(legend.position="none")+
+    xlab("Condition")+
+    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+         
 ```
 
 

@@ -1,0 +1,9 @@
+---
+title: "HT22 Mouse Hippocampal Cell counts 11-16"
+output: html_notebook
+---
+
+This analysis is for the HT22 mouse hippocampal trials from 11-16 to 11-19.  During this trial, the cells were seeded at 25,000 cells per plate, grown for one day, and exposed to the magnetic field as normal.  The evening of the day of magnetic field exposure, the cell media was changed using a normal glucose DMEM.  
+
+We found out later that HT22 cells do not really like normal glucuse DMEM as it accelerated glutamate induced toxicity in the cells.  Nevertheless I will proceed with the analysis because if we can show that the B-Field cells died to the same degree or less than the control condition it still supports our hypothesis.
+
