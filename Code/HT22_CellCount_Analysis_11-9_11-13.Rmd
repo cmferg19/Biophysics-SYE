@@ -7,3 +7,64 @@ This analysis is for the HT22 mouse hippocampal trials from 11-16 to 11-19.  Dur
 
 We found out later that HT22 cells do not really like normal glucuse DMEM as it accelerated glutamate induced toxicity in the cells.  Nevertheless I will proceed with the analysis because if we can show that the B-Field cells died to the same degree or less than the control condition it still supports our hypothesis.
 
+First import the data:
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+
+cells <- read.csv(here("Data", "Cellcountdata_11-9_11-13.csv"),stringsAsFactors = TRUE)
+```
+
+Now let's make a quick boxplot to take a look at the data:
+
+```{r}
+# relevel the data to put the control first
+cells<- mutate(cells, Condition = relevel(Condition, ref = "Control"))
+
+# reassign the values of the different EMF conditions to combine them
+cells <- cells %>% mutate(Exposure = recode(cells$Date, "11/10/2022" = 'After Exposure', "11/9/2022" = 'Before Exposure'))
+
+# relevel the data to put the before exposure first
+cells<- mutate(cells, Exposure = relevel(Exposure, ref = "Before Exposure"))
+
+
+# make a box plot of the data
+ggplot(cells, aes(x = Condition, y = Cells)) +
+geom_boxplot()+
+  geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
+  facet_wrap(~Exposure)+
+  xlab("Sample") +
+  ylab("Cell counts (cells/mm^2)")
+```
+
+This is looking good except, I'd like to put before on the left and after on the right...
+
+```{r}
+# find the means of the cell counts and put them in a new table
+mean_counts <- cells %>% group_by(Condition,Exposure) %>% summarise(
+  meancounts = mean(Cells),
+  secounts = sd(Cells)/sqrt(sum(!is.na(Cells))                                                             ))
+```
+Now lets make a scatterplot of this:
+```{r}
+# create scatterplot with error bars
+ggplot(mean_counts, aes(Condition, meancounts, color = Exposure))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    facet_wrap(~Exposure)+
+    theme(legend.position="none")+
+    xlab("Condition")+
+    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+```
+
+
+
