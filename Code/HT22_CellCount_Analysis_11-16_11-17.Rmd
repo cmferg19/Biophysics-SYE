@@ -79,5 +79,18 @@ ggplot(mean_counts, aes(Condition, meancounts, color = Exposure))+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
 ```
 
-Since a statistically significant number of counts were perfromed for this condition, we will do a two sample t test to figure out the differences between them.
+Since a statistically significant number of counts were performed for this condition, we will do a two sample t test to figure out the differences between them.
+
+```{r}
+# filter based on exposure
+before <- cells %>% filter(Exposure == "Before Exposure")
+
+after <- cells %>% filter(Exposure == "After Exposure")
+  
+  
+# perform two sample t test
+t.test(Cells ~ Condition, data = before)
+
+t.test(Cells ~ Condition, data = after)
+```
 
