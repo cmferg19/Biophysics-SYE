@@ -13,30 +13,71 @@ rm(list = ls())
 
 # include the libraries that we need
 library(ggplot2)
-library(tidyverse)
+library(dplyr)
 library(here)
 library(lubridate)
+library(ggfortify)
 ```
 
 Now we will import the dataset
 
 ```{r}
-DF <- read.csv(here("Data", "Cellcountdata_11-16_11-18.csv"), stringsAsFactors = TRUE)
+cells <- read.csv(here("Data", "Cellcountdata_11-16_11-18.csv"), stringsAsFactors = TRUE)
 ```
 
-```{r}
-# reassign the date variable to make r recognize the date as dates
-#DF <- DF %>% mdy(Date)
-```
 
 Now let's take a look at the spread of the data with a boxplot real quick
 ```{r}
+# relevel the data to put the control first
+cells<- mutate(cells, Condition = relevel(Condition, ref = "Control"))
+
+levels(cells$Condition)
+```
+
+```{r}
+# reassign the values of the different EMF conditions to combine them
+cells <- cells %>% mutate(Exposure = recode(cells$Date, "11/17/2022" = 'After Exposure', "11/16/2022" = 'Before Exposure'))
+
+# relevel the data to put the before exposure first
+cells<- mutate(cells, Exposure = relevel(Exposure, ref = "Before Exposure"))
+
+
 # make a box plot of the data
-ggplot(DF, aes(x = Condition, y = Cells)) +
+ggplot(cells, aes(x = Condition, y = Cells)) +
 geom_boxplot()+
   geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
-  facet_wrap(~Date)+
+  facet_wrap(~Exposure)+
   xlab("Sample") +
   ylab("Cell counts (cells/mm^2)")
 ```
+From this, it looks like the CO2 deprivation did impact the cells quite a bit and it doesn't look like they bounced back as quick as I thought they would
+
+Let's make a scatterplot to visualize this a little better.
+them on a new graph that is a little prettier. 
+
+
+```{r}
+# find the means of the cell counts and put them in a new table
+# find the means of the cell counts and put them in a new table
+mean_counts <- cells %>% group_by(Condition,Exposure) %>% summarise(
+  meancounts = mean(Cells),
+  secounts = sd(Cells)/sqrt(sum(!is.na(Cells))                                                             ))
+```
+
+Now let's plot this:
+```{r}
+# create scatterplot with error bars
+ggplot(mean_counts, aes(Condition, meancounts, color = Exposure))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    facet_wrap(~Exposure)+
+    theme(legend.position="none")+
+    xlab("Condition")+
+    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+```
+
+Since a statistically significant number of counts were perfromed for this condition, we will do a two sample t test to figure out the differences between them.
 
