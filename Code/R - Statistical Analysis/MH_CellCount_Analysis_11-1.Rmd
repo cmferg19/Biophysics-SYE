@@ -54,7 +54,7 @@ geom_boxplot()+
 Ok, now we are going to calculate the means for these and plot them on a new graph that is a little prettier. 
 ```{r}
 # reassign the values of the different EMF conditions to combine them
-counts$Condition <- recode(counts$Condition, EMF_1 = 'B-Field', EMF_2 = 'B-Field', Control = 'Control')
+counts$Condition <- recode(counts$Condition, EMF_1 = 'Magnetic Field', EMF_2 = 'Magnetic Field', Control = 'Control')
 
 ```
 

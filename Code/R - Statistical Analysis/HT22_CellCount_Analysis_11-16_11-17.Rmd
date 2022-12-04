@@ -28,8 +28,10 @@ cells <- read.csv(here("Data", "Cellcountdata_11-16_11-18.csv"), stringsAsFactor
 
 Now let's take a look at the spread of the data with a boxplot real quick
 ```{r}
+#cells <- cells %>% mutate(Condition = recode(cells$Condition, "Control" = 'Control', "B-Field" = 'Magnetic Field'))
+
 # relevel the data to put the control first
-cells<- mutate(cells, Condition = relevel(Condition, ref = "Control"))
+#cells<- mutate(cells, Condition = relevel(Condition, ref = "Control"))
 
 levels(cells$Condition)
 ```

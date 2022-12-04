@@ -33,6 +33,8 @@ cells <- cells %>% mutate(Exposure = recode(cells$Date, "11/10/2022" = 'After Ex
 # relevel the data to put the before exposure first
 cells<- mutate(cells, Exposure = relevel(Exposure, ref = "Before Exposure"))
 
+cells <- cells %>% mutate(Condition = recode(cells$Condition, "Control" = 'Control', "B-Field" = 'Magnetic Field'))
+
 
 # make a box plot of the data
 ggplot(cells, aes(x = Condition, y = Cells)) +
