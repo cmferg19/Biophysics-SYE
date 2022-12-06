@@ -38,7 +38,7 @@ counts$Count_trial<-as.factor(counts$Count_trial)
 counts <- counts %>% filter(Count_trial == c("1", "2"))
 
 # recode the counts to be before and after exposure
-counts$Count_trial <- recode(counts$Count_trial, "1" = 'Before Exposure', "2" = 'After Exposure')
+counts$Count_trial <- recode(counts$Count_trial, "1" = 'Before Exposure', "2" = '24 Hours After Exposure')
 ```
 
 Now I am going to create a box plot of the data to visualize the spread and get a better idea of the distribution.
@@ -65,7 +65,7 @@ mean_counts <- counts %>% group_by(Condition,Count_trial) %>% summarise(
   meancounts = mean(Counts),
   secounts = sd(Counts)/sqrt(sum(!is.na(Counts))                                                             ))
 ```
-Now we will make a scatterplot with this data and seperate it based on the count
+Now we will make a scatterplot with this data and separate it based on the count
 
 ```{r}
 # create scatterplot with error bars
@@ -82,6 +82,18 @@ ggplot(mean_counts, aes(Condition, meancounts, color = Count_trial))+
          
 ```
 
+```{r}
+# create scatter plot with error bars
+ggplot(mean_counts, aes(Count_trial, meancounts, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    #theme(legend.position="none")+
+    xlab("Time (Day)")+
+    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+```
 
 
 

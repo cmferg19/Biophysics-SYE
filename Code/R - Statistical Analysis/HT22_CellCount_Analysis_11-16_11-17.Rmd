@@ -38,7 +38,7 @@ levels(cells$Condition)
 
 ```{r}
 # reassign the values of the different EMF conditions to combine them
-cells <- cells %>% mutate(Exposure = recode(cells$Date, "11/17/2022" = 'After Exposure', "11/16/2022" = 'Before Exposure'))
+cells <- cells %>% mutate(Exposure = recode(cells$Date, "11/17/2022" = '24 Hours After Exposure', "11/16/2022" = 'Before Exposure'))
 
 # relevel the data to put the before exposure first
 cells<- mutate(cells, Exposure = relevel(Exposure, ref = "Before Exposure"))
@@ -96,3 +96,15 @@ t.test(Cells ~ Condition, data = before)
 t.test(Cells ~ Condition, data = after)
 ```
 
+```{r}
+# create scatter plot with error bars
+ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    #theme(legend.position="none")+
+    xlab("Count")+
+    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+```
