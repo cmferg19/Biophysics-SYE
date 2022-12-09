@@ -91,7 +91,7 @@ ggplot(mean_counts, aes(Count_trial, meancounts, color = Condition, group = Cond
                        ymax = meancounts + secounts), width = 0.1)+
     theme_bw()+
     #theme(legend.position="none")+
-    xlab("Time (Day)")+
+    xlab("Count")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
 ```
 
