@@ -1,0 +1,39 @@
+---
+title: "Helmholtz Coil MF Exposure System Control Testing"
+author: "Cora Ferguson"
+date: "2023-01-24"
+output: html_document
+---
+
+# Overview
+Today the goal is to determine if the system needs to be recalibrated from when I last used it last semester.  Testing consisted of me using my phone and the app *Phyphox* to measure the magnitude of the magnetic field in four different conditions:
+
+Magnetic Field | Arduino System
+--------------- | ---------------
+On | On
+On | Off
+Off |On
+Off | Off
+
+The initial data makes it look like there aren't any significant shifts from last semester but I'll plot these to take a closer look. 
+
+# Preliminary Data Analysis
+```{r}
+# set up the environment and import the data
+rm(list = ls())
+
+# import the libraries that we need
+library(dplyr)
+library(here)
+library(ggplot2)
+library(readr)
+```
+
+```{r}
+# import the data
+DF <- read.csv(here("Data","SystemControlTesting_1-24-2023.csv"))
+
+glimpse(DF)
+```
+
+
