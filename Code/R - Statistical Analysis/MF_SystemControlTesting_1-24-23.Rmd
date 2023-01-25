@@ -31,9 +31,92 @@ library(readr)
 
 ```{r}
 # import the data
-DF <- read.csv(here("Data","SystemControlTesting_1-24-2023.csv"))
+DF <- read.csv(here("Data","SystemControlTesting_1-24-2023.csv"), stringsAsFactors = TRUE)
 
 glimpse(DF)
 ```
 
+```{r}
+# make a new data set taking the averages of the different conditions
+avg_DF <- DF %>% group_by(Distance, Test) %>% summarise(
+     meanMagnitude = mean(Magnitude_uT),
+     seMagnitude = sd(Magnitude_uT)/sqrt(sum(!is.na(Magnitude_uT))))
+```
 
+Now that things are a little cleaned up, I will graph them using scatter plots:
+```{r}
+# filter things down to test A (Magnetic field off, Arduino off)
+ avg_DFA<- filter(avg_DF, Test == "A")
+
+ggplot(avg_DFA, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()
+  
+
+ggplot(avg_DFA, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()+
+  ylim(0, 1000)
+```
+
+```{r}
+# filter things down to test B (Magnetic field off, Arduino on)
+ avg_DFB<- filter(avg_DF, Test == "B")
+
+ggplot(avg_DFB, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()
+  
+
+ggplot(avg_DFB, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()+
+  ylim(0, 1000)
+```
+
+
+```{r}
+# filter things down to test C (Magnetic field on, Arduino off)
+ avg_DFC<- filter(avg_DF, Test == "C")
+
+ggplot(avg_DFC, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()
+  
+
+ggplot(avg_DFC, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()+
+  ylim(0, 1200)
+```
+
+```{r}
+# filter things down to test C (Magnetic field on, Arduino on)
+ avg_DFD<- filter(avg_DF, Test == "D")
+
+ggplot(avg_DFD, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()
+  
+
+ggplot(avg_DFD, aes(Distance, meanMagnitude))+
+         geom_point()+
+     xlab("Distance from center of coils (cm)")+
+     ylab("Magnetic field (uT)")+
+     theme_bw()+
+  ylim(0, 1200)
+```
