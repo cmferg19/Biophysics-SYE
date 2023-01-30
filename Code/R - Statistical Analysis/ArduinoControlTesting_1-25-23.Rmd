@@ -1,0 +1,40 @@
+---
+title: "Control testing analysis of Arduino monitoring system"
+output: html_notebook
+---
+
+# Overview
+The goal of this testing is to make sure that the Arduino based quality control system does not need recalibration from last semester. To do this, I ran a series of short term tests and long term tests to measure the performance
+
+```{r}
+# import the libraries to set up the data analysis
+rm(list = ls())
+
+library(dplyr)
+library(here)
+library(ggplot2)
+```
+
+## Short term testing
+```{r}
+# import the data
+short_term <- read.csv(here("Data", "Shorttermtemptesting_1-25-23.csv"))
+
+glimpse(short_term)
+```
+
+Now, I am going to group by and summarize the data to create a time plot of the peltier's performance
+
+```{r}
+short_term_avg <- short_term %>% group_by(Time_sec) %>%
+  summarise(meanTemp = mean(temperature))
+
+# use new DF to create a time plot
+ggplot(short_term_avg, aes(Time_sec, meanTemp))+
+         geom_point()+
+     xlab("Time (seconds)")+
+     ylab("Temperature (Celsius)")+
+     theme_bw()+
+  ylim(0, 100)
+```
+
