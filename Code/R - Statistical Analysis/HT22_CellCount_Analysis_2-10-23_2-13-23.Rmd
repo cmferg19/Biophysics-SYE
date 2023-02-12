@@ -1,0 +1,29 @@
+---
+title: "HT22 Cell count analysis 2-10-23 to 2-13-23 "
+output: html_notebook
+---
+This code is designed to analyze the cell count data from the first experimental trial after putting mouse hippocampal cells in the EMF for 30 mins.  The goal of this trial is to measure survivalbility of these cells and ensure that the current protocol won't kill these neural cells before we try with C17.2 stem cells.
+
+These cells were seeded at 25,000 cells/plate and this was the first trial of 2023 after working out a few kinks with the equipment
+
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+
+```
+
+Import the data:
+```{r}
+# import the data set that we will be analysing, the stringsAsFactors = True argument converts categorical data to factors so we can analyse the levels
+counts <- read.csv(here("Data", "HT22cellcountdata_2-11_2-13.csv"),stringsAsFactors = TRUE)
+
+# take a look at the structure of the data
+glimpse(counts)
+```
+
