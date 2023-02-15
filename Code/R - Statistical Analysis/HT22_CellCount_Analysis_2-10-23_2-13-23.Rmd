@@ -25,6 +25,12 @@ counts <- read.csv(here("Data", "HT22cellcountdata_2-11_2-13.csv"),stringsAsFact
 
 # take a look at the structure of the data
 glimpse(counts)
+
+# recode the counts to be before and after exposure
+counts$Condition <- recode(counts$Condition, "B-Field" = 'Magnetic Field')
+
+# relevel the data to put the control first
+counts<- mutate(counts, Condition = relevel(Condition, ref = "Control"))
 ```
 
 Now I am going to make a boxplot of the data to visualize the distributions
@@ -69,10 +75,12 @@ ggplot(mean_counts, aes(Condition, meancounts, color = Date))+
 Now lets make the relationship a little more obvious between the two
 
 ```{r}
+library(scales)
 # create scatter plot with error bars
 ggplot(mean_counts, aes(Date, meancounts, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
+     scale_color_manual(values=c('#F8766D','#00BFC4'))+
      geom_errorbar(aes(ymin = meancounts - secounts,
                        ymax = meancounts + secounts), width = 0.1)+
     theme_bw()+
