@@ -7,7 +7,7 @@ This code is designed to analyze the cell count data from the second experimenta
 
 Things that are different about this trial:
 - cells seeded at 10,000 cells/plate
-- 2 plates running at once (cells are swaped halfway through exposure)
+- 2 plates running at once (cells are swapped halfway through exposure)
 
 
 ```{r}
