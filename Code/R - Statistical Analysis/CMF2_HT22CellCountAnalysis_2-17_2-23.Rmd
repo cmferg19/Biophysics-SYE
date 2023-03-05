@@ -56,7 +56,7 @@ The boxplot doesn't look the best but right now it is taking all of the count da
 
 # find the means of the cell counts and put them in a new table
 mean_counts <- counts %>% 
-  filter(!is.na(Date)) %>%
+  filter(Trial_Day == "Day 1" | Trial_Day == "Day 2" | Trial_Day =="Day 3" | Trial_Day == "Day 4" | Trial_Day == "Day 4" | Trial_Day == "Day 5" | Trial_Day == "Day 6" | Trial_Day == "Day 7") %>%
     group_by(Condition,Trial_Day) %>% summarise(
       meancounts = mean(Cell_Count),
       secounts = sd(Cell_Count)/sqrt(sum(!is.na(Cell_Count)))
@@ -98,16 +98,63 @@ ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condit
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
 ```
 ```{r}
-# create standardized scatter plot with error bars
-ggplot(mean_counts, aes(Date, standardcounts, color = Condition, group = Condition))+
+
+# calculate the growth rates using a for loop and store the results of the data in   a new dataframe
+
+#define the starting value of x (where we want the loop to start iterating through   our previous data set)
+  x <- 1
+
+# make an empty data frame
+d <- data.frame()
+
+# Write for loop to go through and create a new data set with the growth rates
+  for(i in mean_counts$meancounts) {
+    y = mean_counts$meancounts[x + 1]
+    
+    z = (y-mean_counts$meancounts[x])/24
+    
+    print(z)
+    
+    x = x+1
+    
+    d = rbind(d, z)
+  }
+```
+
+```{r}
+# add growthrate data to the mean counts dataset
+mean_counts["Hours"] <-c(0,24,48,72,96, 120, 144, 0,24,48,72,96, 120, 144)
+mean_counts["Slope"] <- c(NA, 
+                          -0.5711806,
+                            0.2534722,
+                            1.371528,
+                            2.229167,
+                            1.842014,
+                            2.435764,
+                            NA,
+                            0.2940066,
+                            0.4105072,
+                            1.779861,
+                            3.505208,
+                            6.388889,
+                            2.060764)
+
+
+
+```
+
+Now let's plot this:
+```{r}
+# create scatter plot that showes the slopes of each of the conditions
+ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
-     #geom_errorbar(aes(ymin = meancounts - secounts,
-                       #ymax = meancounts + secounts), width = 0.1)+
+     #geom_errorbar(aes(ymin = standardcounts - secounts,
+                       #ymax = standardcounts + secounts), width = 0.1)+
     theme_bw()+
     #theme(legend.position="none")+
-    xlab("Date")+
-    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+    xlab("Time(Hours)")+
+    ylab(expression("Growthrate (Cells/hour)"))
 ```
 

@@ -61,7 +61,7 @@ The boxplot doesn't look the best but right now it is taking all of the count da
 ```{r}
 # find the means of the cell counts and put them in a new table
 mean_counts <- counts %>% 
-  filter(!is.na(Date), !is.na(Trial_Day), !is.na(Condition)) %>%
+  filter(!is.na(Date), !is.na(Trial_Day), Condition == "Control" | Condition == "Magnetic Field") %>%
     group_by(Condition,Trial_Day) %>% summarise(
       meancounts = mean(Cell_Count),
       secounts = sd(Cell_Count)/sqrt(sum(!is.na(Cell_Count)))
@@ -115,16 +115,17 @@ d <- data.frame()
   for(i in mean_counts$meancounts) {
     y = mean_counts$meancounts[x + 1]
     
-    z = (y-x)/24
+    z = (y-mean_counts$meancounts[x])/24
     
     print(z)
     
     x = x+1
     
-    
-    mean_counts = rbind(d, z)
+    d = rbind(d, z)
   }
-  
+
+mean_counts["Slope"] <- c(NA,0.73, NA, NA, NA, NA, NA, NA,1.95, NA, NA, NA, NA, NA)
+
 
 ```
 
