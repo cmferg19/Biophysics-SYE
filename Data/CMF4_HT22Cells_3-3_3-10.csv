@@ -1,0 +1,385 @@
+﻿Date,Trial_Day,Plate,Condition,Count_Trial,Cell_Count
+4-Mar,Day 1,A,Control,1,33
+4-Mar,Day 1,A,Control,2,35
+4-Mar,Day 1,A,Control,3,78
+4-Mar,Day 1,A,Control,4,30
+4-Mar,Day 1,A,Control,5,18
+4-Mar,Day 1,A,Control,6,24
+4-Mar,Day 1,A,Control,7,60
+4-Mar,Day 1,A,Control,8,30
+4-Mar,Day 1,A,Control,9,31
+4-Mar,Day 1,A,Control,10,25
+4-Mar,Day 1,A,Control,11,39
+4-Mar,Day 1,A,Control,12,63
+4-Mar,Day 1,B,Control,1,36
+4-Mar,Day 1,B,Control,2,34
+4-Mar,Day 1,B,Control,3,67
+4-Mar,Day 1,B,Control,4,38
+4-Mar,Day 1,B,Control,5,30
+4-Mar,Day 1,B,Control,6,59
+4-Mar,Day 1,B,Control,7,40
+4-Mar,Day 1,B,Control,8,69
+4-Mar,Day 1,B,Control,9,62
+4-Mar,Day 1,B,Control,10,39
+4-Mar,Day 1,B,Control,11,50
+4-Mar,Day 1,B,Control,12,57
+4-Mar,Day 1,C,B-Field,1,43
+4-Mar,Day 1,C,B-Field,2,62
+4-Mar,Day 1,C,B-Field,3,52
+4-Mar,Day 1,C,B-Field,4,38
+4-Mar,Day 1,C,B-Field,5,49
+4-Mar,Day 1,C,B-Field,6,51
+4-Mar,Day 1,C,B-Field,7,72
+4-Mar,Day 1,C,B-Field,8,53
+4-Mar,Day 1,C,B-Field,9,45
+4-Mar,Day 1,C,B-Field,10,49
+4-Mar,Day 1,C,B-Field,11,47
+4-Mar,Day 1,C,B-Field,12,82
+4-Mar,Day 1,D,B-Field,1,22
+4-Mar,Day 1,D,B-Field,2,65
+4-Mar,Day 1,D,B-Field,3,82
+4-Mar,Day 1,D,B-Field,4,14
+4-Mar,Day 1,D,B-Field,5,26
+4-Mar,Day 1,D,B-Field,6,51
+4-Mar,Day 1,D,B-Field,7,85
+4-Mar,Day 1,D,B-Field,8,68
+4-Mar,Day 1,D,B-Field,9,57
+4-Mar,Day 1,D,B-Field,10,66
+4-Mar,Day 1,D,B-Field,11,55
+4-Mar,Day 1,D,B-Field,12,68
+5-Mar,Day 2,A,Control,1,39
+5-Mar,Day 2,A,Control,2,37
+5-Mar,Day 2,A,Control,3,63
+5-Mar,Day 2,A,Control,4,65
+5-Mar,Day 2,A,Control,5,47
+5-Mar,Day 2,A,Control,6,14
+5-Mar,Day 2,A,Control,7,43
+5-Mar,Day 2,A,Control,8,42
+5-Mar,Day 2,A,Control,9,117
+5-Mar,Day 2,A,Control,10,54
+5-Mar,Day 2,A,Control,11,48
+5-Mar,Day 2,A,Control,12,53
+5-Mar,Day 2,B,Control,1,67
+5-Mar,Day 2,B,Control,2,52
+5-Mar,Day 2,B,Control,3,59
+5-Mar,Day 2,B,Control,4,42
+5-Mar,Day 2,B,Control,5,37
+5-Mar,Day 2,B,Control,6,44
+5-Mar,Day 2,B,Control,7,85
+5-Mar,Day 2,B,Control,8,78
+5-Mar,Day 2,B,Control,9,114
+5-Mar,Day 2,B,Control,10,76
+5-Mar,Day 2,B,Control,11,119
+5-Mar,Day 2,B,Control,12,74
+5-Mar,Day 2,C,B-Field,1,71
+5-Mar,Day 2,C,B-Field,2,97
+5-Mar,Day 2,C,B-Field,3,98
+5-Mar,Day 2,C,B-Field,4,144
+5-Mar,Day 2,C,B-Field,5,74
+5-Mar,Day 2,C,B-Field,6,55
+5-Mar,Day 2,C,B-Field,7,115
+5-Mar,Day 2,C,B-Field,8,49
+5-Mar,Day 2,C,B-Field,9,124
+5-Mar,Day 2,C,B-Field,10,219
+5-Mar,Day 2,C,B-Field,11,77
+5-Mar,Day 2,C,B-Field,12,81
+5-Mar,Day 2,D,B-Field,1,82
+5-Mar,Day 2,D,B-Field,2,136
+5-Mar,Day 2,D,B-Field,3,232
+5-Mar,Day 2,D,B-Field,4,53
+5-Mar,Day 2,D,B-Field,5,38
+5-Mar,Day 2,D,B-Field,6,14
+5-Mar,Day 2,D,B-Field,7,56
+5-Mar,Day 2,D,B-Field,8,98
+5-Mar,Day 2,D,B-Field,9,129
+5-Mar,Day 2,D,B-Field,10,164
+5-Mar,Day 2,D,B-Field,11,118
+6-Mar,Day 3,D,B-Field,12,183
+6-Mar,Day 3,A,Control,1,
+6-Mar,Day 3,A,Control,2,
+6-Mar,Day 3,A,Control,3,
+6-Mar,Day 3,A,Control,4,
+6-Mar,Day 3,A,Control,5,
+6-Mar,Day 3,A,Control,6,
+6-Mar,Day 3,A,Control,7,
+6-Mar,Day 3,A,Control,8,
+6-Mar,Day 3,A,Control,9,
+6-Mar,Day 3,A,Control,10,
+6-Mar,Day 3,A,Control,11,
+6-Mar,Day 3,A,Control,12,
+6-Mar,Day 3,B,Control,1,
+6-Mar,Day 3,B,Control,2,
+6-Mar,Day 3,B,Control,3,
+6-Mar,Day 3,B,Control,4,
+6-Mar,Day 3,B,Control,5,
+6-Mar,Day 3,B,Control,6,
+6-Mar,Day 3,B,Control,7,
+6-Mar,Day 3,B,Control,8,
+6-Mar,Day 3,B,Control,9,
+6-Mar,Day 3,B,Control,10,
+6-Mar,Day 3,B,Control,11,
+6-Mar,Day 3,B,Control,12,
+6-Mar,Day 3,C,B-Field,1,
+6-Mar,Day 3,C,B-Field,2,
+6-Mar,Day 3,C,B-Field,3,
+6-Mar,Day 3,C,B-Field,4,
+6-Mar,Day 3,C,B-Field,5,
+6-Mar,Day 3,C,B-Field,6,
+6-Mar,Day 3,C,B-Field,7,
+6-Mar,Day 3,C,B-Field,8,
+6-Mar,Day 3,C,B-Field,9,
+6-Mar,Day 3,C,B-Field,10,
+6-Mar,Day 3,C,B-Field,11,
+6-Mar,Day 3,C,B-Field,12,
+6-Mar,Day 3,D,B-Field,1,
+6-Mar,Day 3,D,B-Field,2,
+6-Mar,Day 3,D,B-Field,3,
+6-Mar,Day 3,D,B-Field,4,
+6-Mar,Day 3,D,B-Field,5,
+6-Mar,Day 3,D,B-Field,6,
+6-Mar,Day 3,D,B-Field,7,
+6-Mar,Day 3,D,B-Field,8,
+6-Mar,Day 3,D,B-Field,9,
+6-Mar,Day 3,D,B-Field,10,
+6-Mar,Day 3,D,B-Field,11,
+6-Mar,Day 3,D,B-Field,12,
+7-Mar,Day 4,A,Control,1,
+7-Mar,Day 4,A,Control,2,
+7-Mar,Day 4,A,Control,3,
+7-Mar,Day 4,A,Control,4,
+7-Mar,Day 4,A,Control,5,
+7-Mar,Day 4,A,Control,6,
+7-Mar,Day 4,A,Control,7,
+7-Mar,Day 4,A,Control,8,
+7-Mar,Day 4,A,Control,9,
+7-Mar,Day 4,A,Control,10,
+7-Mar,Day 4,A,Control,11,
+7-Mar,Day 4,A,Control,12,
+7-Mar,Day 4,B,Control,1,
+7-Mar,Day 4,B,Control,2,
+7-Mar,Day 4,B,Control,3,
+7-Mar,Day 4,B,Control,4,
+7-Mar,Day 4,B,Control,5,
+7-Mar,Day 4,B,Control,6,
+7-Mar,Day 4,B,Control,7,
+7-Mar,Day 4,B,Control,8,
+7-Mar,Day 4,B,Control,9,
+7-Mar,Day 4,B,Control,10,
+7-Mar,Day 4,B,Control,11,
+7-Mar,Day 4,B,Control,12,
+7-Mar,Day 4,C,B-Field,1,
+7-Mar,Day 4,C,B-Field,2,
+7-Mar,Day 4,C,B-Field,3,
+7-Mar,Day 4,C,B-Field,4,
+7-Mar,Day 4,C,B-Field,5,
+7-Mar,Day 4,C,B-Field,6,
+7-Mar,Day 4,C,B-Field,7,
+7-Mar,Day 4,C,B-Field,8,
+7-Mar,Day 4,C,B-Field,9,
+7-Mar,Day 4,C,B-Field,10,
+7-Mar,Day 4,C,B-Field,11,
+7-Mar,Day 4,C,B-Field,12,
+7-Mar,Day 4,D,B-Field,1,
+7-Mar,Day 4,D,B-Field,2,
+7-Mar,Day 4,D,B-Field,3,
+7-Mar,Day 4,D,B-Field,4,
+7-Mar,Day 4,D,B-Field,5,
+7-Mar,Day 4,D,B-Field,6,
+7-Mar,Day 4,D,B-Field,7,
+7-Mar,Day 4,D,B-Field,8,
+7-Mar,Day 4,D,B-Field,9,
+7-Mar,Day 4,D,B-Field,10,
+7-Mar,Day 4,D,B-Field,11,
+7-Mar,Day 4,D,B-Field,12,
+8-Mar,Day 5,A,Control,1,
+8-Mar,Day 5,A,Control,2,
+8-Mar,Day 5,A,Control,3,
+8-Mar,Day 5,A,Control,4,
+8-Mar,Day 5,A,Control,5,
+8-Mar,Day 5,A,Control,6,
+8-Mar,Day 5,A,Control,7,
+8-Mar,Day 5,A,Control,8,
+8-Mar,Day 5,A,Control,9,
+8-Mar,Day 5,A,Control,10,
+8-Mar,Day 5,A,Control,11,
+8-Mar,Day 5,A,Control,12,
+8-Mar,Day 5,B,Control,1,
+8-Mar,Day 5,B,Control,2,
+8-Mar,Day 5,B,Control,3,
+8-Mar,Day 5,B,Control,4,
+8-Mar,Day 5,B,Control,5,
+8-Mar,Day 5,B,Control,6,
+8-Mar,Day 5,B,Control,7,
+8-Mar,Day 5,B,Control,8,
+8-Mar,Day 5,B,Control,9,
+8-Mar,Day 5,B,Control,10,
+8-Mar,Day 5,B,Control,11,
+8-Mar,Day 5,B,Control,12,
+8-Mar,Day 5,C,B-Field,1,
+8-Mar,Day 5,C,B-Field,2,
+8-Mar,Day 5,C,B-Field,3,
+8-Mar,Day 5,C,B-Field,4,
+8-Mar,Day 5,C,B-Field,5,
+8-Mar,Day 5,C,B-Field,6,
+8-Mar,Day 5,C,B-Field,7,
+8-Mar,Day 5,C,B-Field,8,
+8-Mar,Day 5,C,B-Field,9,
+8-Mar,Day 5,C,B-Field,10,
+8-Mar,Day 5,C,B-Field,11,
+8-Mar,Day 5,C,B-Field,12,
+8-Mar,Day 5,D,B-Field,1,
+8-Mar,Day 5,D,B-Field,2,
+8-Mar,Day 5,D,B-Field,3,
+8-Mar,Day 5,D,B-Field,4,
+8-Mar,Day 5,D,B-Field,5,
+8-Mar,Day 5,D,B-Field,6,
+8-Mar,Day 5,D,B-Field,7,
+8-Mar,Day 5,D,B-Field,8,
+8-Mar,Day 5,D,B-Field,9,
+8-Mar,Day 5,D,B-Field,10,
+8-Mar,Day 5,D,B-Field,11,
+8-Mar,Day 5,D,B-Field,12,
+9-Mar,Day 6,A,Control,1,
+9-Mar,Day 6,A,Control,2,
+9-Mar,Day 6,A,Control,3,
+9-Mar,Day 6,A,Control,4,
+9-Mar,Day 6,A,Control,5,
+9-Mar,Day 6,A,Control,6,
+9-Mar,Day 6,A,Control,7,
+9-Mar,Day 6,A,Control,8,
+9-Mar,Day 6,A,Control,9,
+9-Mar,Day 6,A,Control,10,
+9-Mar,Day 6,A,Control,11,
+9-Mar,Day 6,A,Control,12,
+9-Mar,Day 6,B,Control,1,
+9-Mar,Day 6,B,Control,2,
+9-Mar,Day 6,B,Control,3,
+9-Mar,Day 6,B,Control,4,
+9-Mar,Day 6,B,Control,5,
+9-Mar,Day 6,B,Control,6,
+9-Mar,Day 6,B,Control,7,
+9-Mar,Day 6,B,Control,8,
+9-Mar,Day 6,B,Control,9,
+9-Mar,Day 6,B,Control,10,
+9-Mar,Day 6,B,Control,11,
+9-Mar,Day 6,B,Control,12,
+9-Mar,Day 6,C,B-Field,1,
+9-Mar,Day 6,C,B-Field,2,
+9-Mar,Day 6,C,B-Field,3,
+9-Mar,Day 6,C,B-Field,4,
+9-Mar,Day 6,C,B-Field,5,
+9-Mar,Day 6,C,B-Field,6,
+9-Mar,Day 6,C,B-Field,7,
+9-Mar,Day 6,C,B-Field,8,
+9-Mar,Day 6,C,B-Field,9,
+9-Mar,Day 6,C,B-Field,10,
+9-Mar,Day 6,C,B-Field,11,
+9-Mar,Day 6,C,B-Field,12,
+9-Mar,Day 6,D,B-Field,1,
+9-Mar,Day 6,D,B-Field,2,
+9-Mar,Day 6,D,B-Field,3,
+9-Mar,Day 6,D,B-Field,4,
+9-Mar,Day 6,D,B-Field,5,
+9-Mar,Day 6,D,B-Field,6,
+9-Mar,Day 6,D,B-Field,7,
+9-Mar,Day 6,D,B-Field,8,
+9-Mar,Day 6,D,B-Field,9,
+9-Mar,Day 6,D,B-Field,10,
+9-Mar,Day 6,D,B-Field,11,
+9-Mar,Day 6,D,B-Field,12,
+10-Mar,Day 7,A,Control,1,
+10-Mar,Day 7,A,Control,2,
+10-Mar,Day 7,A,Control,3,
+10-Mar,Day 7,A,Control,4,
+10-Mar,Day 7,A,Control,5,
+10-Mar,Day 7,A,Control,6,
+10-Mar,Day 7,A,Control,7,
+10-Mar,Day 7,A,Control,8,
+10-Mar,Day 7,A,Control,9,
+10-Mar,Day 7,A,Control,10,
+10-Mar,Day 7,A,Control,11,
+10-Mar,Day 7,A,Control,12,
+10-Mar,Day 7,B,Control,1,
+10-Mar,Day 7,B,Control,2,
+10-Mar,Day 7,B,Control,3,
+10-Mar,Day 7,B,Control,4,
+10-Mar,Day 7,B,Control,5,
+10-Mar,Day 7,B,Control,6,
+10-Mar,Day 7,B,Control,7,
+10-Mar,Day 7,B,Control,8,
+10-Mar,Day 7,B,Control,9,
+10-Mar,Day 7,B,Control,10,
+10-Mar,Day 7,B,Control,11,
+10-Mar,Day 7,B,Control,12,
+10-Mar,Day 7,C,B-Field,1,
+10-Mar,Day 7,C,B-Field,2,
+10-Mar,Day 7,C,B-Field,3,
+10-Mar,Day 7,C,B-Field,4,
+10-Mar,Day 7,C,B-Field,5,
+10-Mar,Day 7,C,B-Field,6,
+10-Mar,Day 7,C,B-Field,7,
+10-Mar,Day 7,C,B-Field,8,
+10-Mar,Day 7,C,B-Field,9,
+10-Mar,Day 7,C,B-Field,10,
+10-Mar,Day 7,C,B-Field,11,
+10-Mar,Day 7,C,B-Field,12,
+10-Mar,Day 7,D,B-Field,1,
+10-Mar,Day 7,D,B-Field,2,
+10-Mar,Day 7,D,B-Field,3,
+10-Mar,Day 7,D,B-Field,4,
+10-Mar,Day 7,D,B-Field,5,
+10-Mar,Day 7,D,B-Field,6,
+10-Mar,Day 7,D,B-Field,7,
+10-Mar,Day 7,D,B-Field,8,
+10-Mar,Day 7,D,B-Field,9,
+10-Mar,Day 7,D,B-Field,10,
+10-Mar,Day 7,D,B-Field,11,
+10-Mar,Day 7,D,B-Field,12,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,

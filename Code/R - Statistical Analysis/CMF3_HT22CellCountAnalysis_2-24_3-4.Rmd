@@ -1,5 +1,10 @@
 ---
-title: "CMF2 HT22 Cell Count analysis 2/17-2/23"
+title: "R Notebook"
+output: html_notebook
+---
+
+---
+title: "CMF3 HT22 Cell Count analysis 2/25 - 3/3"
 output: html_notebook
 ---
 
@@ -25,7 +30,7 @@ library(ggfortify)
 Import the data:
 ```{r}
 # import the data set that we will be analysing, the stringsAsFactors = True argument converts categorical data to factors so we can analyse the levels
-counts <- read.csv(here("Data", "CMF2_HT22Cells_2-17_2-23.csv"),stringsAsFactors = TRUE)
+counts <- read.csv(here("Data", "CMF3_HT22Cells_2-24_3-4.csv"),stringsAsFactors = TRUE)
 
 # take a look at the structure of the data
 glimpse(counts)
@@ -34,7 +39,12 @@ glimpse(counts)
 counts$Condition <- recode(counts$Condition, "B-Field" = 'Magnetic Field')
 
 # relevel the data to put the control first
-counts<- mutate(counts, Condition = relevel(Condition, ref = "Control"))
+counts<- mutate(counts, Condition = relevel(Condition, ref = "Control"),
+                        )
+
+# relevel the dates to put March last
+counts$Date <-  factor(counts$Date, levels = c("25-Feb", "26-Feb", "27-Feb", "28-Feb", "1-Mar", "2-Mar", "3-Mar"))
+
 ```
 
 Now I am going to make a boxplot of the data to visualize the distributions
@@ -45,7 +55,7 @@ better idea of the distribution.
 ggplot(counts, aes(x = Condition, y = Cell_Count)) +
 geom_boxplot()+
   geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
-  facet_wrap(~Date)+
+  facet_wrap(~Trial_Day)+
   xlab("Sample") +
   ylab("Cell counts (cells/mm^2)")
 ```
@@ -53,7 +63,6 @@ geom_boxplot()+
 The boxplot doesn't look the best but right now it is taking all of the count data and showing the distribution.  A more accurate teller of the actual data will be if we take the average of the counts by day.
 
 ```{r}
-
 # find the means of the cell counts and put them in a new table
 mean_counts <- counts %>% 
   filter(!is.na(Date)) %>%
@@ -94,17 +103,44 @@ ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condit
                        ymax = meancounts + secounts), width = 0.1)+
     theme_bw()+
     #theme(legend.position="none")+
-    xlab("Date")+
+    xlab("Trial Day")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
 ```
 ```{r}
-# create standardized scatter plot with error bars
-ggplot(mean_counts, aes(Date, standardcounts, color = Condition, group = Condition))+
+# calculate the growth rates using a for loop and store the results of the data in   a new dataframe
+
+#define the starting value of x (where we want the loop to start iterating through   our previous data set)
+  x <- 1
+
+# make an empty data frame
+d <- data.frame()
+
+# Write for loop to go through and create a new data set with the growth rates
+  for(i in mean_counts$meancounts) {
+    y = mean_counts$meancounts[x + 1]
+    
+    z = (y-x)/24
+    
+    print(z)
+    
+    x = x+1
+    
+    
+    mean_counts = rbind(d, z)
+  }
+  
+
+```
+
+```{r}
+
+# create scatter plot with error bars
+ggplot(mean_counts, aes(Date, growthrate, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
-     #geom_errorbar(aes(ymin = meancounts - secounts,
-                       #ymax = meancounts + secounts), width = 0.1)+
+     #geom_errorbar(aes(ymin = standardcounts - secounts,
+                       #ymax = standardcounts + secounts), width = 0.1)+
     theme_bw()+
     #theme(legend.position="none")+
     xlab("Date")+
