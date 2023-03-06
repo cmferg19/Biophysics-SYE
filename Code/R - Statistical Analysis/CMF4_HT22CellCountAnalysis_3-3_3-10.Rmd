@@ -134,7 +134,7 @@ mean_counts["Slope"] <- c(NA,0.733, 0.866, NA, NA, NA, NA, NA,1.95, 1.478, NA, N
 ```
 
 ```{r}
-# create scatter plot that showes the slopes of each of the conditions
+# create scatter plot that shows the slopes of each of the conditions
 ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
@@ -145,5 +145,24 @@ ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
     #theme(legend.position="none")+
     xlab("Time (Hours)")+
     ylab(expression("Growthrate (Cells/hour)"))
+```
+
+Another way to visualize the growth rates:
+```{r}
+# create scatter plot that shows the slopes of each of the conditions
+ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     scale_color_manual(values=c('#F8766D','#00BFC4'))+
+     #geom_errorbar(aes(ymin = standardcounts - secounts,
+                       #ymax = standardcounts + secounts), width = 0.1)+
+    geom_area(aes(fill = Condition, alpha = 0.2))+
+    
+    theme_bw()+
+    scale_x_continuous(breaks=seq(0,144,by=24))+
+    theme(legend.position="none")+
+    xlab("Time (Hours)")+
+    ylab(expression("Growthrate (Cells/hour)")) +
+  facet_wrap(~Condition)
 ```
 
