@@ -124,15 +124,18 @@ d <- data.frame()
     d = rbind(d, z)
   }
 
-mean_counts["Slope"] <- c(NA,0.73, NA, NA, NA, NA, NA, NA,1.95, NA, NA, NA, NA, NA)
+```
 
+```{r}
+# add in the hours and slope variables to look at how the growth rate changes over time
+mean_counts["Hours"] <-c(0,24,48,72,96, 120, 144, 0,24,48,72,96, 120, 144)
+mean_counts["Slope"] <- c(NA,0.733, 0.866, NA, NA, NA, NA, NA,1.95, 1.478, NA, NA, NA, NA)
 
 ```
 
 ```{r}
-
-# create scatter plot with error bars
-ggplot(mean_counts, aes(Date, growthrate, color = Condition, group = Condition))+
+# create scatter plot that showes the slopes of each of the conditions
+ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
@@ -140,7 +143,7 @@ ggplot(mean_counts, aes(Date, growthrate, color = Condition, group = Condition))
                        #ymax = standardcounts + secounts), width = 0.1)+
     theme_bw()+
     #theme(legend.position="none")+
-    xlab("Date")+
-    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+    xlab("Time (Hours)")+
+    ylab(expression("Growthrate (Cells/hour)"))
 ```
 
