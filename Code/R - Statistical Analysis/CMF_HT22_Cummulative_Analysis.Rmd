@@ -88,4 +88,75 @@ ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condit
     xlab("Trial Day")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
 ```
+Now let's put together the growth rate data for each of these trials:
+```{r}
+# calculate the growth rates using a for loop and store the results of the data in   a new dataframe
 
+#define the starting value of x (where we want the loop to start iterating through   our previous data set)
+  x <- 1
+
+# make an empty data frame
+d <- data.frame()
+
+# Write for loop to go through and create a new data set with the growth rates
+  for(i in mean_counts$meancounts) {
+    y = mean_counts$meancounts[x + 1]
+    
+    z = (y-mean_counts$meancounts[x])/24
+    
+    #print(z)
+    
+    x = x+1
+    
+    d = rbind(d, z)
+  }
+
+dput(d)
+```
+
+```{r}
+# add in the hours and slope variables to look at how the growth rate changes over time
+mean_counts["Hours"] <-c(0,24,48,72,96, 120, 144, 0,24,48,72,96, 120, 144)
+mean_counts["Slope"] <- c(NA, 0.015625, 0.396412037037037, 1.91840277777778, 
+1.91782407407407, 3.48611111111111, 3.88946759259259, NA, 
+0.774028784219002, 0.613309178743962, 2.58256944444444, 3.33275462962963, 
+4.24016203703704, 1.29398148148148)
+
+```
+
+Great, now that its added into the mean_counts data frame, we can use that to create a graph of the slopes:
+```{r}
+# create scatter plot that shows the slopes of each of the conditions
+ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     scale_color_manual(values=c('#F8766D','#00BFC4'))+
+     #geom_errorbar(aes(ymin = standardcounts - secounts,
+                       #ymax = standardcounts + secounts), width = 0.1)+
+    geom_area(aes(fill = Condition, alpha = 0.2))+
+    
+    theme_bw()+
+    scale_x_continuous(breaks=seq(0,144,by=24))+
+    theme(legend.position="none")+
+    xlab("Time (Hours)")+
+    ylab(expression("Growthrate (Cells/hour)")) +
+  facet_grid(~Condition)
+```
+
+```{r}
+# create scatter plot that shows the slopes of each of the conditions
+ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     scale_color_manual(values=c('#F8766D','#00BFC4'))+
+     #geom_errorbar(aes(ymin = standardcounts - secounts,
+                       #ymax = standardcounts + secounts), width = 0.1)+
+    geom_area(aes(fill = Condition, alpha = 0.2))+
+    
+    theme_bw()+
+    scale_x_continuous(breaks=seq(0,144,by=24))+
+    
+    xlab("Time (Hours)")+
+    ylab(expression("Growthrate (Cells/hour)")) 
+  
+```
