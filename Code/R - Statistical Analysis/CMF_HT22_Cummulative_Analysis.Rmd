@@ -149,13 +149,12 @@ ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
-     #geom_errorbar(aes(ymin = standardcounts - secounts,
-                       #ymax = standardcounts + secounts), width = 0.1)+
-    geom_area(aes(fill = Condition, alpha = 0.2))+
+
+    #geom_area(aes(fill = Condition, group = Condition), alpha = 0.2)+
     
     theme_bw()+
     scale_x_continuous(breaks=seq(0,144,by=24))+
-    
+    theme(legend.position="none")+
     xlab("Time (Hours)")+
     ylab(expression("Growthrate (Cells/hour)")) 
   
