@@ -123,7 +123,7 @@ d <- data.frame()
 ```{r}
 # add in the hours and slope variables to look at how the growth rate changes over time
 mean_counts["Hours"] <-c(0,24,48,72,96, 120, 144, 0,24,48,72,96, 120, 144)
-mean_counts["Slope"] <- c(NA,1.354167, 5.645833, NA, NA, NA, NA, NA,2.324653, 6.845486, NA, NA, NA, NA)
+mean_counts["Slope"] <- c(NA,1.354167, 5.645833, 7.934028, 5.446181, NA, NA, NA,2.324653, 6.845486, 9.145833, 3.336806, NA, NA)
 
 ```
 
