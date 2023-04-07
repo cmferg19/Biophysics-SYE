@@ -127,8 +127,9 @@ dput(d)
 ```{r}
 # add in the hours and slope variables to look at how the growth rate changes over time
 mean_counts["Hours"] <-c(0,24,48,72,96, 120, 144, 0,24,48,72,96, 120, 144)
-mean_counts["Slope"] <- c(NA,0.913194444444445, NA, 
-NA, NA, NA, NA, NA, 1.68576388888889, NA, NA, NA, NA, NA)
+mean_counts["Slope"] <- c(NA,0.913194444444445, 4.69097222222222, 
+3.22048611111111, NA, NA, NA, NA, 1.68576388888889, 3.99479166666667, 
+5.53645833333333, NA, NA, NA)
 
 ```
 

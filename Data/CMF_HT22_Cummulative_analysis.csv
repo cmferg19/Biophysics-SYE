@@ -1007,246 +1007,198 @@
 10-Mar,Day 7,D,B-Field,10,481
 10-Mar,Day 7,D,B-Field,11,46
 10-Mar,Day 7,D,B-Field,12,953
-11-Mar,Day 1,A,Control,1,129
-11-Mar,Day 1,A,Control,2,60
-11-Mar,Day 1,A,Control,3,35
-11-Mar,Day 1,A,Control,4,98
-11-Mar,Day 1,A,Control,5,73
-11-Mar,Day 1,A,Control,6,52
-11-Mar,Day 1,A,Control,7,102
-11-Mar,Day 1,A,Control,8,100
-11-Mar,Day 1,A,Control,9,97
-11-Mar,Day 1,A,Control,10,58
-11-Mar,Day 1,A,Control,11,157
-11-Mar,Day 1,A,Control,12,73
-11-Mar,Day 1,B,Control,1,64
-11-Mar,Day 1,B,Control,2,70
-11-Mar,Day 1,B,Control,3,63
-11-Mar,Day 1,B,Control,4,55
-11-Mar,Day 1,B,Control,5,56
-11-Mar,Day 1,B,Control,6,66
-11-Mar,Day 1,B,Control,7,55
-11-Mar,Day 1,B,Control,8,60
-11-Mar,Day 1,B,Control,9,79
-11-Mar,Day 1,B,Control,10,84
-11-Mar,Day 1,B,Control,11,58
-11-Mar,Day 1,B,Control,12,54
-11-Mar,Day 1,C,B-Field,1,67
-11-Mar,Day 1,C,B-Field,2,68
-11-Mar,Day 1,C,B-Field,3,67
-11-Mar,Day 1,C,B-Field,4,61
-11-Mar,Day 1,C,B-Field,5,50
-11-Mar,Day 1,C,B-Field,6,59
-11-Mar,Day 1,C,B-Field,7,41
-11-Mar,Day 1,C,B-Field,8,87
-11-Mar,Day 1,C,B-Field,9,63
-11-Mar,Day 1,C,B-Field,10,148
-11-Mar,Day 1,C,B-Field,11,43
-11-Mar,Day 1,C,B-Field,12,102
-11-Mar,Day 1,D,B-Field,1,64
-11-Mar,Day 1,D,B-Field,2,53
-11-Mar,Day 1,D,B-Field,3,62
-11-Mar,Day 1,D,B-Field,4,52
-11-Mar,Day 1,D,B-Field,5,96
-11-Mar,Day 1,D,B-Field,6,62
-11-Mar,Day 1,D,B-Field,7,111
-11-Mar,Day 1,D,B-Field,8,80
-11-Mar,Day 1,D,B-Field,9,55
-11-Mar,Day 1,D,B-Field,10,121
-11-Mar,Day 1,D,B-Field,11,98
-11-Mar,Day 1,D,B-Field,12,34
-12-Mar,Day 2,A,Control,1,164
-12-Mar,Day 2,A,Control,2,92
-12-Mar,Day 2,A,Control,3,60
-12-Mar,Day 2,A,Control,4,88
-12-Mar,Day 2,A,Control,5,117
-12-Mar,Day 2,A,Control,6,85
-12-Mar,Day 2,A,Control,7,156
-12-Mar,Day 2,A,Control,8,83
-12-Mar,Day 2,A,Control,9,135
-12-Mar,Day 2,A,Control,10,84
-12-Mar,Day 2,A,Control,11,140
-12-Mar,Day 2,A,Control,12,159
-12-Mar,Day 2,B,Control,1,95
-12-Mar,Day 2,B,Control,2,107
-12-Mar,Day 2,B,Control,3,129
-12-Mar,Day 2,B,Control,4,75
-12-Mar,Day 2,B,Control,5,96
-12-Mar,Day 2,B,Control,6,75
-12-Mar,Day 2,B,Control,7,101
-12-Mar,Day 2,B,Control,8,107
-12-Mar,Day 2,B,Control,9,98
-12-Mar,Day 2,B,Control,10,121
-12-Mar,Day 2,B,Control,11,94
-12-Mar,Day 2,B,Control,12,117
-12-Mar,Day 2,C,B-Field,1,76
-12-Mar,Day 2,C,B-Field,2,123
-12-Mar,Day 2,C,B-Field,3,170
-12-Mar,Day 2,C,B-Field,4,152
-12-Mar,Day 2,C,B-Field,5,114
-12-Mar,Day 2,C,B-Field,6,132
-12-Mar,Day 2,C,B-Field,7,103
-12-Mar,Day 2,C,B-Field,8,101
-12-Mar,Day 2,C,B-Field,9,136
-12-Mar,Day 2,C,B-Field,10,169
-12-Mar,Day 2,C,B-Field,11,108
-12-Mar,Day 2,C,B-Field,12,107
-12-Mar,Day 2,D,B-Field,1,74
-12-Mar,Day 2,D,B-Field,2,104
-12-Mar,Day 2,D,B-Field,3,96
-12-Mar,Day 2,D,B-Field,4,73
-12-Mar,Day 2,D,B-Field,5,145
-12-Mar,Day 2,D,B-Field,6,120
-12-Mar,Day 2,D,B-Field,7,137
-12-Mar,Day 2,D,B-Field,8,218
-12-Mar,Day 2,D,B-Field,9,193
-12-Mar,Day 2,D,B-Field,10,191
-12-Mar,Day 2,D,B-Field,11,111
-13-Mar,Day 2,D,B-Field,12,130
-13-Mar,Day 3,A,Control,1,275
-13-Mar,Day 3,A,Control,2,201
-13-Mar,Day 3,A,Control,3,175
-13-Mar,Day 3,A,Control,4,163
-13-Mar,Day 3,A,Control,5,177
-13-Mar,Day 3,A,Control,6,138
-13-Mar,Day 3,A,Control,7,282
-13-Mar,Day 3,A,Control,8,263
-13-Mar,Day 3,A,Control,9,271
-13-Mar,Day 3,A,Control,10,247
-13-Mar,Day 3,A,Control,11,562
-13-Mar,Day 3,A,Control,12,486
-13-Mar,Day 3,B,Control,1,272
-13-Mar,Day 3,B,Control,2,181
-13-Mar,Day 3,B,Control,3,153
-13-Mar,Day 3,B,Control,4,267
-13-Mar,Day 3,B,Control,5,112
-13-Mar,Day 3,B,Control,6,173
-13-Mar,Day 3,B,Control,7,177
-13-Mar,Day 3,B,Control,8,216
-13-Mar,Day 3,B,Control,9,211
-13-Mar,Day 3,B,Control,10,382
-13-Mar,Day 3,B,Control,11,294
-13-Mar,Day 3,B,Control,12,152
-13-Mar,Day 3,C,B-Field,1,202
-13-Mar,Day 3,C,B-Field,2,156
-13-Mar,Day 3,C,B-Field,3,247
-13-Mar,Day 3,C,B-Field,4,311
-13-Mar,Day 3,C,B-Field,5,402
-13-Mar,Day 3,C,B-Field,6,317
-13-Mar,Day 3,C,B-Field,7,228
-13-Mar,Day 3,C,B-Field,8,452
-13-Mar,Day 3,C,B-Field,9,321
-13-Mar,Day 3,C,B-Field,10,180
-13-Mar,Day 3,C,B-Field,11,336
-13-Mar,Day 3,C,B-Field,12,282
-13-Mar,Day 3,D,B-Field,1,183
-13-Mar,Day 3,D,B-Field,2,148
-13-Mar,Day 3,D,B-Field,3,170
-13-Mar,Day 3,D,B-Field,4,166
-13-Mar,Day 3,D,B-Field,5,137
-13-Mar,Day 3,D,B-Field,6,313
-13-Mar,Day 3,D,B-Field,7,532
-13-Mar,Day 3,D,B-Field,8,445
-13-Mar,Day 3,D,B-Field,9,507
-13-Mar,Day 3,D,B-Field,10,321
-13-Mar,Day 3,D,B-Field,11,389
-13-Mar,Day 3,D,B-Field,12,281
-14-Mar,Day 4,A,Control,1,379
-14-Mar,Day 4,A,Control,2,492
-14-Mar,Day 4,A,Control,3,405
-14-Mar,Day 4,A,Control,4,175
-14-Mar,Day 4,A,Control,5,316
-14-Mar,Day 4,A,Control,6,431
-14-Mar,Day 4,A,Control,7,481
-14-Mar,Day 4,A,Control,8,562
-14-Mar,Day 4,A,Control,9,811
-14-Mar,Day 4,A,Control,10,632
-14-Mar,Day 4,A,Control,11,282
-14-Mar,Day 4,A,Control,12,356
-14-Mar,Day 4,B,Control,1,466
-14-Mar,Day 4,B,Control,2,315
-14-Mar,Day 4,B,Control,3,224
-14-Mar,Day 4,B,Control,4,320
-14-Mar,Day 4,B,Control,5,372
-14-Mar,Day 4,B,Control,6,313
-14-Mar,Day 4,B,Control,7,342
-14-Mar,Day 4,B,Control,8,330
-14-Mar,Day 4,B,Control,9,824
-14-Mar,Day 4,B,Control,10,504
-14-Mar,Day 4,B,Control,11,492
-14-Mar,Day 4,B,Control,12,576
-14-Mar,Day 4,C,B-Field,1,353
-14-Mar,Day 4,C,B-Field,2,308
-14-Mar,Day 4,C,B-Field,3,318
-14-Mar,Day 4,C,B-Field,4,469
-14-Mar,Day 4,C,B-Field,5,456
-14-Mar,Day 4,C,B-Field,6,434
-14-Mar,Day 4,C,B-Field,7,517
-14-Mar,Day 4,C,B-Field,8,671
-14-Mar,Day 4,C,B-Field,9,886
-14-Mar,Day 4,C,B-Field,10,794
-14-Mar,Day 4,C,B-Field,11,687
-14-Mar,Day 4,C,B-Field,12,523
-14-Mar,Day 4,D,B-Field,1,301
-14-Mar,Day 4,D,B-Field,2,323
-14-Mar,Day 4,D,B-Field,3,315
-14-Mar,Day 4,D,B-Field,4,257
-14-Mar,Day 4,D,B-Field,5,378
-14-Mar,Day 4,D,B-Field,6,526
-14-Mar,Day 4,D,B-Field,7,844
-14-Mar,Day 4,D,B-Field,8,769
-14-Mar,Day 4,D,B-Field,9,635
-14-Mar,Day 4,D,B-Field,10,408
-14-Mar,Day 4,D,B-Field,11,836
-14-Mar,Day 4,D,B-Field,12,286
-15-Mar,Day 5,A,Control,1,603
-15-Mar,Day 5,A,Control,2,734
-15-Mar,Day 5,A,Control,3,826
-15-Mar,Day 5,A,Control,4,484
-15-Mar,Day 5,A,Control,5,517
-15-Mar,Day 5,A,Control,6,915
-15-Mar,Day 5,A,Control,7,532
-15-Mar,Day 5,A,Control,8,984
-15-Mar,Day 5,A,Control,9,0
-15-Mar,Day 5,A,Control,10,31
-15-Mar,Day 5,A,Control,11,463
-15-Mar,Day 5,A,Control,12,589
-15-Mar,Day 5,B,Control,1,951
-15-Mar,Day 5,B,Control,2,813
-15-Mar,Day 5,B,Control,3,886
-15-Mar,Day 5,B,Control,4,742
-15-Mar,Day 5,B,Control,5,768
-15-Mar,Day 5,B,Control,6,453
-15-Mar,Day 5,B,Control,7,604
-15-Mar,Day 5,B,Control,8,723
-15-Mar,Day 5,B,Control,9,311
-15-Mar,Day 5,B,Control,10,20
-15-Mar,Day 5,B,Control,11,182
-15-Mar,Day 5,B,Control,12,406
-15-Mar,Day 5,C,B-Field,1,612
-15-Mar,Day 5,C,B-Field,2,587
-15-Mar,Day 5,C,B-Field,3,984
-15-Mar,Day 5,C,B-Field,4,732
-15-Mar,Day 5,C,B-Field,5,681
-15-Mar,Day 5,C,B-Field,6,997
-15-Mar,Day 5,C,B-Field,7,546
-15-Mar,Day 5,C,B-Field,8,146
-15-Mar,Day 5,C,B-Field,9,322
-15-Mar,Day 5,C,B-Field,10,973
-15-Mar,Day 5,C,B-Field,11,452
-15-Mar,Day 5,C,B-Field,12,63
-15-Mar,Day 5,D,B-Field,1,546
-15-Mar,Day 5,D,B-Field,2,827
-15-Mar,Day 5,D,B-Field,3,792
-15-Mar,Day 5,D,B-Field,4,618
-15-Mar,Day 5,D,B-Field,5,678
-15-Mar,Day 5,D,B-Field,6,779
-15-Mar,Day 5,D,B-Field,7,953
-15-Mar,Day 5,D,B-Field,8,122
-15-Mar,Day 5,D,B-Field,9,212
-15-Mar,Day 5,D,B-Field,10,414
-15-Mar,Day 5,D,B-Field,11,506
-15-Mar,Day 5,D,B-Field,12,674
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
 ,,,,,
 ,,,,,
 ,,,,,

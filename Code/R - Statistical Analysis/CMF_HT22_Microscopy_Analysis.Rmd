@@ -1,0 +1,21 @@
+---
+title: "CMF HT22 Microscopy Analysis"
+output: html_notebook
+---
+
+The goal of this file is to put together all of the information that I have collected during the microscopy trials of the HT22 cells. For these trials, the protocol was changed and dropped to 4 days.  There were a few reasons for this. First, the cell growth behavior changed from before spring break to after spring break.  This is because the cells are getting higher in their n numbers (the number of splits).  Typically, the more you split cells, the more their behavior begins to change.  As such, seperate growth rate data was collected during these 5 day trials to observe the differences in growth between the control and experimental conditions.
+
+```{r}
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+library(readr)
+```
+```
+
