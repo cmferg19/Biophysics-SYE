@@ -1,0 +1,74 @@
+---
+title: "CMF HT22 Microscopy Data Organization"
+output: html_notebook
+---
+
+# Data organization for control data
+
+Import the libraries that we need
+```{r}
+
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+library(readr)
+
+```
+
+Import the data
+```{r}
+# length and angle data
+la1 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control1_la_results.csv"))
+
+la2 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control2_la.csv"))
+
+la3 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control3_la.csv"))
+
+la4 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control4_la.csv"))
+
+la5 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control5_la.csv"))
+
+la6 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control6_la.csv"))
+
+# circularity data
+circ1 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control1_circ_results.csv"))
+
+circ2 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control2_circ.csv"))
+
+circ3 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control3_circ.csv"))
+
+circ4 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control4_circ.csv"))
+
+circ5 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control5_circ.csv"))
+
+circ6 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control6_circ.csv"))
+```
+
+Now lets join all of the data together to make a big data set:
+```{r}
+# length and angle data
+CMF6_controlB_la <- bind_rows(la1,
+                         la2,
+                         la3,
+                         la4,
+                         la5,
+                         la6
+                         )
+write_csv(CMF6_controlB_la, here("Data", "CMF6_controlB_la.csv"))
+
+# circularity data
+CMF6_controlB_circ <- bind_rows(circ1,
+                                circ2,
+                                circ3,
+                                circ4,
+                                circ5,
+                                circ6
+)
+write_csv(CMF6_controlB_circ, here("Data", "CMF6_controlB_circ.csv"))
+```
+

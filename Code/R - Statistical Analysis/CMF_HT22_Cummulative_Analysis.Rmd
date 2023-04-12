@@ -41,6 +41,9 @@ glimpse(counts)
 # recode the counts to be before and after exposure
 counts$Condition <- recode(counts$Condition, "B-Field" = 'Magnetic Field')
 
+counts <- counts %>%
+  tidyr::drop_na()
+
 ```
 
 
@@ -158,3 +161,36 @@ ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
     ylab(expression("Growthrate (Cells/hour)")) 
   
 ```
+
+## Statistical analysis
+Now its time to try and figure out how to actually find statistical differences in this data. 
+
+First, lets figure out if the data are normally distributed by generating histograms for the combined data based on the day of the trial.
+
+```{r}
+counts %>%
+  ggplot(aes(x = Cell_Count))+
+  geom_histogram()+
+  facet_wrap(~Trial_Day)
+```
+Based on this, the data aren't as normally distributed as I originally thought. Days 1 and 2 look good but day 3 and beyond are looking more right skewed.  Despite this, a comparison of means should do the trick for us. 
+
+```{r}
+model <- model <- aov(Cell_Count ~ Condition * Trial_Day, data = counts)
+
+summary(model)
+```
+
+From this it looks like there is a significant difference between the overall average growth of the magnetic and control cells.
+
+```{r}
+pwc <- counts %>%
+  pairwise_t_test(
+    Cell_Count ~ Trial_Day, paired = TRUE,
+    p.adjust.method = "bonferroni"
+    )
+pwc
+```
+
+
+

@@ -165,8 +165,6 @@ ggplot(iris, aes(x = Sepal.Width)) +
 New trial with plotting using `plotly`
 ```{r}
 library(plotly)
-
-
 ```
 
 ```{r}
@@ -176,13 +174,13 @@ circ <-
 ```
 
 ```{r}
-ggplot(circ, aes(x = Angle_Rad)) + 
-  coord_polar(theta = "x", start = 2*pi, direction = -1)+
-  geom_histogram(aes(fill = Length), color= "black") +
-  scale_y_continuous("Length of Neurite (microns)", limits = c(0,100)) +
-  scale_x_continuous(limits = c(-pi,pi), breaks = c(0, pi/4, pi/2, 3*pi/4, 
-  pi, -3*pi/4, -pi/2, -pi/4),
-                     labels = c("270", "315", "0", "45", "90", "135", "180", "225"))
+#ggplot(circ, aes(x = Angle_Rad)) + 
+#  coord_polar(theta = "x", start = 2*pi, direction = -1)+
+#  geom_histogram(aes(fill = Length), color= "black") +
+#  scale_y_continuous("Length of Neurite (microns)", limits = c(0,100)) +
+#  scale_x_continuous(limits = c(-pi,pi), breaks = c(0, pi/4, pi/2, 3*pi/4, 
+#  pi, -3*pi/4, -pi/2, -pi/4),
+#                     labels = c("270", "315", "0", "45", "90", "135", "180", "225"))
 ```
 ```{r}
 base <- ggplot(circ, aes(x=Angle, y=Length))
