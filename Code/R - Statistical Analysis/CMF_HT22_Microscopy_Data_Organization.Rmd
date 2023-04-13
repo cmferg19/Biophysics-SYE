@@ -20,7 +20,7 @@ library(readr)
 
 ```
 
-Import the data
+Import the control data
 ```{r}
 # length and angle data
 la1 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control1_la_results.csv"))
@@ -49,7 +49,7 @@ circ5 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control5_circ.csv"))
 circ6 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control6_circ.csv"))
 ```
 
-Now lets join all of the data together to make a big data set:
+Now lets join all of the data together to make a big data set out of the control data:
 ```{r}
 # length and angle data
 CMF6_controlB_la <- bind_rows(la1,
@@ -70,5 +70,88 @@ CMF6_controlB_circ <- bind_rows(circ1,
                                 circ6
 )
 write_csv(CMF6_controlB_circ, here("Data", "CMF6_controlB_circ.csv"))
+```
+
+
+Import the magnetic field data:
+```{r}
+# length and angle data
+laC1 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_1.csv"))
+
+laC2 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_2.csv"))
+
+laC3 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_3.csv"))
+
+laC4 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_4.csv"))
+
+laC5 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_5.csv"))
+
+lac6 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_6.csv"))
+
+laC7 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_la_7.csv"))
+
+laC8 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_la.csv"))
+
+
+# circularity data
+circC1 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_circ_1.csv"))
+
+circC2<- read_csv(here("Data","CMF6_MFC_Numbers","MagC_circ_2.csv"))
+
+
+circC4 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_circ_4.csv"))
+
+circC5 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_circ_5.csv"))
+
+circC6 <- read_csv(here("Data","CMF6_MFC_Numbers","MagC_circ_6.csv"))
+
+circD1 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_2_circ.csv"))
+
+circD2 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_3_circ.csv"))
+
+circD3 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_4_circ.csv"))
+
+circD4 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_5_circ.csv"))
+
+circD5 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_6_circ.csv"))
+
+circD6 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_7_circ.csv"))
+
+circD7 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_8_circ.csv"))
+
+circD8 <- read_csv(here("Data","CMF6_MFD_Numbers","CMF6_MFD_9_circ.csv"))
+```
+Now lets join all of this data together:
+```{r}
+# length and angle data
+CMF6_MF_la <- bind_rows(laC1,
+                         laC2,
+                         laC3,
+                         laC4,
+                         laC5,
+                         lac6,
+                         laC7,
+                         laC8
+                         )
+write_csv(CMF6_MF_la, here("Data", "CMF6_MF_la.csv"))
+
+# circularity data
+CMF6_MF_circ <- bind_rows(circC1,
+                                circC2,
+                                
+                                circC4,
+                                circC5,
+                                circC6,
+                           circD1,
+                           circD2,
+                           circD3,
+                           circD4,
+                           circD5,
+                           circD6,
+                           circD7,
+                           circD8
+                           
+)
+write_csv(CMF6_MF_circ, here("Data", "CMF6_MF_circ.csv"))
 ```
 
