@@ -1,0 +1,38 @@
+---
+title: "Polar Plot code"
+output: html_notebook
+---
+
+# Some sample code for the polar plot I need to make:
+
+Here I am going to try and create a polar histogram with the length and angle data from the preliminary analysis of the HT22 microscope images.
+
+First we need to import some sample data:
+```{r}
+circ <- read.csv(here("Data", "Control1_la_results.csv"))
+```
+
+Now try the analysis:
+```{r}
+ggplot(circ, aes(x = Length)) +
+  geom_histogram(binwidth = 10) +
+  scale_x_continuous(breaks = seq(0, 360, 60)) +
+  coord_polar() +
+  xlab(NULL)+ylab(NULL)
+
+library(plotrix)
+polar.plot(circ$Length, circ$Angle, lwd = 3, line.col = 4, show.grid.labels=FALSE)
+```
+
+```{r}
+base <- ggplot(circ, aes(x=Angle, y=Length))
+
+p <- base + coord_polar(start = 0, direction = -1)+
+  scale_x_continuous(limits = c(-180,180), breaks = c(0, 45, -45, 180, 
+  90, -90, 135, -135), labels = c("0", "45", "90", "135", "180", "225", "270", "315"))
+
+p+ geom_segment(aes(y=0, xend=Angle, yend=Length))+
+  scale_y_continuous("Length of Neurite (microns)")+
+  theme_bw()
+  
+```

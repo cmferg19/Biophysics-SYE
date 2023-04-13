@@ -36,6 +36,7 @@ la5 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control5_la.csv"))
 la6 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control6_la.csv"))
 
 # circularity data
+
 circ1 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control1_circ_results.csv"))
 
 circ2 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control2_circ.csv"))
@@ -47,6 +48,14 @@ circ4 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control4_circ.csv"))
 circ5 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control5_circ.csv"))
 
 circ6 <- read_csv(here("Data","CMF6_ControlB_Numbers","Control6_circ.csv"))
+```
+```{r}
+# fix the circ1 data for the control
+circ1 <- circ1 %>%
+  mutate(
+    Area = Area/(19.2*19.2),
+    Perim. = Perim./19.2
+  )
 ```
 
 Now lets join all of the data together to make a big data set out of the control data:
@@ -63,7 +72,7 @@ write_csv(CMF6_controlB_la, here("Data", "CMF6_controlB_la.csv"))
 
 # circularity data
 CMF6_controlB_circ <- bind_rows(circ1,
-                                circ2,
+                                
                                 circ3,
                                 circ4,
                                 circ5,
