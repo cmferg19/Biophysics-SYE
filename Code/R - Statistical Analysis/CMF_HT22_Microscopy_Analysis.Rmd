@@ -134,6 +134,7 @@ ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
   facet_grid(~Condition)
 ```
 
+There were not enough trials performed during this analysis to determine if there is statistical relavence with regards to the growth and proliferation observed in these trials. 
 
 # Move on to microscopy analysis
 
@@ -180,8 +181,18 @@ p <- base + coord_polar(start = 0, direction = -1)+
   90, -90, 135, -135), labels = c("0", "45", "315", "180", "90", "270", "135", "225"))
 
 p+ geom_segment(aes(y=0, xend=Angle, yend=Length), color = '#F8766D')+
-  scale_y_continuous(limits = c(0, 120), breaks = c(0, 30, 60, 90, 120),"Length of Neurite (microns)")+
-  theme_bw()
+  scale_y_continuous(limits = c(0, 120), breaks = c(0, 30, 60, 90, 120),"Neurite Length (\u00b5m)")+
+  theme_bw()+
+  annotate("text", x = 0, y = 0,
+           label = expression("0"))+
+  annotate("text", x = -160, y = 30,
+           label = expression("30")) +
+  annotate("text", x = -160, y = 60,
+           label = expression("60"))+
+  annotate("text", x = -160, y = 90,
+           label = expression("90"))+
+  annotate("text", x = -160, y = 120,
+           label = expression("120"))
   
 ```
 
@@ -195,8 +206,18 @@ p <- base + coord_polar(start = 0, direction = -1)+
   90, -90, 135, -135), labels = c("0", "45", "315", "180", "90", "270", "135", "225"))
 
 p+ geom_segment(aes(y=0, xend=Angle, yend=Length), color = "#00BFC4")+
-  scale_y_continuous(limits = c(0, 120), breaks = c(0, 30, 60, 90, 120),"Length of Neurite (microns)")+
-  theme_bw()
+  scale_y_continuous(limits = c(0, 120), breaks = c(0, 30, 60, 90, 120),"Neurite Length(\u00b5m)")+
+  theme_bw()+
+  annotate("text", x = 0, y = 0,
+           label = expression("0"))+
+  annotate("text", x = -160, y = 30,
+           label = expression("30")) +
+  annotate("text", x = -160, y = 60,
+           label = expression("60"))+
+  annotate("text", x = -160, y = 90,
+           label = expression("90"))+
+  annotate("text", x = -160, y = 120,
+           label = expression("120"))
   
 ```
 
@@ -228,12 +249,125 @@ ggplot(full_circ, aes(x = circ, fill = Condition))+
   geom_histogram(bins = 50, alpha = 0.5, position="identity", aes(y=..density.., fill=Condition, ))+
  geom_density(alpha=.2) +
   theme_bw() +
-  labs(x = "Circularity bins", y = "Number of Neurons")+
+  labs(x = "Circularity bins", y = "Neuron Density")+
   scale_x_continuous(limits = c(0,1), breaks = c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9, 1))
 
   
   
 ```
+```{r}
+circ_plt <- ggplot(full_circ, aes(x = circ, fill = Condition))+
+  #geom_histogram(bins = 50, alpha = 0.5, position="identity", aes(y=..density.., fill=Condition, ))+
+ geom_density(alpha=.2) +
+  theme_bw() +
+  labs(x = "Circularity bins", y = "Neuron Density")+
+  scale_x_continuous(limits = c(0,1), breaks = c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9, 1))
+
+ggsave(filename = "circ_plt.jpg",
+       plot = circ_plt,
+       width = 7,
+       height = 5)
+```
+
+Lets see if we can model the differences in circularity a little differently:
+```{r}
+mean_circ <- full_circ %>%
+  group_by(Condition)%>%
+  summarise(meancirc = mean(circ),
+            secirc = sd(circ)/sum(!is.na(circ)))
+```
+
+
+
+Lets model the length and angle data using a density plot as well:
+```{r}
+# rename the first columns in the control and MF data sets so they will join together
+control_la <- control_la %>%
+  rename("Line" = 1)
+
+MF_la <- MF_la %>%
+  rename("Line" = 1)
+
+# join the mf_la an control_la data frames together to compare them
+full_la <- bind_rows("Control" = control_la,
+          "Magnetic Field" = MF_la,
+          .id = "Condition")
+
+```
+
+
+Length histograms/density plots:
+```{r}
+ggplot(full_la, aes(x = Length, fill = Condition))+
+  geom_histogram(bins = 50, alpha = 0.5, position="identity", aes(y=..density.., fill=Condition, ))+
+ geom_density(alpha=.2) +
+  theme_bw() +
+  labs(x = "Neurite Length (\u00b5m)", y = "Neuron Density")
+  
+```
+
+```{r}
+length_plt <- ggplot(full_la, aes(x = Length, fill = Condition))+
+  #geom_histogram(bins = 50, alpha = 0.5, position="identity", aes(y=..density.., fill=Condition, ))+
+ geom_density(alpha=.2) +
+  theme_bw() +
+  labs(x = "Neurite Length (\u00b5m)", y = "Neuron Density")+
+  theme(legend.position = "none")
+
+ggsave(filename = "length_density_plt.jpg",
+       plot = length_plt,
+       width = 5,
+       height = 5)
+  
+```
+
+Now let's see if there is a significant difference between the lengths of the neurites:
+```{r}
+# run a t.test to test the difference between the mean neurite length between the two conditions:
+lengthtest <- t.test(Length~Condition, data = full_la)
+lengthtest
+```
+Run a two sample t test on the circularity:
+```{r}
+circtest <- t.test(circ~Condition, data = full_circ)
+circtest
+```
+
+```{r}
+angle_boxplt <- full_la %>%
+  ggplot(aes(x= Condition, y =Angle, fill = Condition))+
+  geom_boxplot(alpha = 0.5)+
+  theme_bw()+
+  theme(legend.position="none")
+  
+ggsave(filename = "angle_boxplt.jpg",
+       plot = angle_boxplt,
+       width = 5,
+       height = 5)
+  
+```
+```{r}
+lattest <- t.test(Angle~Condition, data = full_la)
+lattest
+```
+
+
+```{r}
+full_la %>%
+  ggplot(aes(x= Length, fill = Condition))+
+  geom_boxplot()
+
+
+full_la%>%
+  group_by(Condition)%>%
+  summarise(meanangle = mean(Angle),
+            meanlength = length(Length))
+```
+
+
+
+
+
 
 
 

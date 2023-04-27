@@ -71,7 +71,7 @@ ggplot(mean_counts, aes(Condition, meancounts, color = Exposure))+
 
 ```{r}
 # create scatter plot with error bars
-ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Condition))+
+media_change_plot <- ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      geom_errorbar(aes(ymin = meancounts - secounts,
@@ -80,6 +80,13 @@ ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Conditi
     #theme(legend.position="none")+
     xlab("Count")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
-```
 
+media_change_plot
+
+ggsave(filename = "media_change_plt_sem1.jpg",
+       plot = media_change_plot,
+       width = 7,
+       height = 5)
+
+```
 

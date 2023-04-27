@@ -41,7 +41,7 @@ better idea of the distribution.
 ggplot(counts, aes(x = Condition, y = Cell_Count)) +
 geom_boxplot()+
   geom_point(size = 3, colour = 'lightgrey', alpha = 0.5)+
-  facet_wrap(~Date)+
+  facet_wrap(~Trial_Day)+
   xlab("Sample") +
   ylab("Cell counts (cells/mm^2)")
 ```
@@ -50,7 +50,7 @@ The boxplot doesn't look the best but right now it is taking all of the count da
 
 ```{r}
 # find the means of the cell counts and put them in a new table
-mean_counts <- counts %>% group_by(Condition,Date) %>% summarise(
+mean_counts <- counts %>% group_by(Condition,Trial_Day) %>% summarise(
   meancounts = mean(Cell_Count),
   secounts = sd(Cell_Count)/sqrt(sum(!is.na(Cell_Count))                                                             ))
 ```
@@ -59,13 +59,13 @@ Great, now lets get to work with this data
 
 ```{r}
 # create scatterplot with error bars
-ggplot(mean_counts, aes(Condition, meancounts, color = Date))+
+ggplot(mean_counts, aes(Condition, meancounts, color = Trial_Day))+
      geom_point()+
      geom_line()+
      geom_errorbar(aes(ymin = meancounts - secounts,
                        ymax = meancounts + secounts), width = 0.1)+
     theme_bw()+
-    facet_wrap(~Date)+
+    facet_wrap(~Trial_Day)+
     theme(legend.position="none")+
     xlab("Condition")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
@@ -77,7 +77,7 @@ Now lets make the relationship a little more obvious between the two
 ```{r}
 library(scales)
 # create scatter plot with error bars
-ggplot(mean_counts, aes(Date, meancounts, color = Condition, group = Condition))+
+high_density_plt <- ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
@@ -85,6 +85,11 @@ ggplot(mean_counts, aes(Date, meancounts, color = Condition, group = Condition))
                        ymax = meancounts + secounts), width = 0.1)+
     theme_bw()+
     #theme(legend.position="none")+
-    xlab("Date")+
+    xlab("Trial Day")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+
+ggsave(filename = "high_density_plt_sem2.jpg",
+       plot = high_density_plt,
+       width = 7,
+       height = 4)
 ```

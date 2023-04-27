@@ -1,0 +1,144 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+library(readr)
+```
+
+Read in the data:
+```{r}
+counts <- read_csv(here("Data", "CMF_HT22_Cummulative_analysis.csv"))
+
+# take a look at the structure of the data
+glimpse(counts)
+
+# recode the counts to be before and after exposure
+counts$Condition <- recode(counts$Condition, "B-Field" = 'Magnetic Field')
+
+counts <- counts %>%
+  tidyr::drop_na()
+
+```
+```{r}
+counts_tidy <- counts %>% 
+  filter(!is.na(Date), !is.na(Trial_Day), !is.na(Cell_Count), Condition == "Control" | Condition == "Magnetic Field") %>%
+    group_by(Condition, Trial_Day) 
+
+#%>% summarise(
+     # meangrowthrate = mean(Cell_Count),
+      #segrowthrate = sd(Cell_Count)/sqrt(sum(!is.na(Cell_Count))),
+      #sdevgrowthrate = sd(Cell_Count)
+  
+  #     )
+```
+
+```{r}
+# calculate the growth rates using a for loop and store the results of the data in   a new dataframe
+
+#define the starting value of x (where we want the loop to start iterating through   our previous data set)
+x <- 1
+
+# make an empty data frame
+d <- data.frame()
+
+# Write for loop to go through and create a new data set with the growth rates
+  for(i in counts_tidy$Cell_Count) {
+    y = counts_tidy$Cell_Count[x + 1]
+    
+    z = (y-counts_tidy$Cell_Count[x])/24
+    
+    #print(z)
+    
+    x = x+1
+    
+    d = rbind(d, z)
+  }
+
+```
+
+Now let's clean up the dataset:
+```{r}
+d <-
+  d %>%
+  rename("Growthrate"=1)
+```
+
+
+Bind the datasets together:
+```{r}
+counts_tidy <- bind_cols(counts_tidy, d)
+
+Growthrates <- counts_tidy
+  
+```
+
+Now we have all of the growth rates so we can find the mean growth rates and standard error:
+```{r}
+
+# find the means of the cell counts and put them in a new table
+mean_growthrates <- Growthrates %>% 
+  filter(!is.na(Growthrate), Trial_Day != "Day 7") %>%
+    group_by(Plate,Trial_Day) %>% summarise(
+      meangrowthrate = mean(Growthrate),
+      sdgrowthrate = sd(Growthrate),
+      segrowthrate = sd(Growthrate)/sqrt(sum(!is.na(Growthrate))))
+  
+  
+```
+Statistical analysis:
+Lets try and do a t test on these values:
+```{r}
+# split these up by days
+Day1 <- Growthrates %>%
+  filter(Trial_Day == "Day 1")
+
+Day2 <- Growthrates %>%
+  filter(Trial_Day == "Day 2")
+
+Day3 <- Growthrates %>%
+  filter(Trial_Day == "Day 3")
+
+Day4 <- Growthrates %>%
+  filter(Trial_Day == "Day 4")
+
+Day5 <- Growthrates %>%
+  filter(Trial_Day == "Day 5")
+
+Day6 <- Growthrates %>%
+  filter(Trial_Day == "Day 6")
+```
+
+Now let's perform the t-tests:
+```{r}
+day1t <- t.test(Growthrate~Condition, data = Day1)
+day1t
+
+day2t <- t.test(Growthrate~Condition, data = Day2)
+day2t
+
+day3t <- t.test(Growthrate~Condition, data = Day3)
+day3t
+
+day4t <- t.test(Growthrate~Condition, data = Day4)
+day4t
+
+day5t <- t.test(Growthrate~Condition, data = Day5)
+day5t
+
+day6t <- t.test(Growthrate~Condition, data = Day6)
+day6t
+```
+
+
+
+

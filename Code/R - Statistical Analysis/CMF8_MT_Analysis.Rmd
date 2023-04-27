@@ -1,0 +1,75 @@
+---
+title: "Microtubule aggregation analysis"
+output: html_notebook
+---
+
+Another metric that we are interested in analyzing is the microtubule aggregation. The microtubules are a part of the cytoskeleton responsible for a lot of different things including structural integrity and organizing cell division.  Here, we are interested in seeing if there is a difference in the number of aggregations of microtubules between the conditions and the overall size of these aggregations.
+
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+library(readr)
+```
+
+Import the data:
+```{r}
+control <- read_csv(here("Data", "controlMTaggregationresults.csv"))
+  
+bfield <- read_csv(here("Data", "bfieldMTaggregationresults.csv"))
+```
+Now let's bind these together and clean them up:
+```{r}
+full_df <- bind_rows("Control" = control,
+          "Magnetic Field" = bfield,
+          .id = "Condition")
+```
+
+Clean it up and isolate the length data we are interested in
+```{r}
+full_df_tidy <- full_df %>%
+  select(Condition, Length) %>%
+  mutate(Length = Length/2)
+```
+
+Now lets compare them:
+```{r}
+MT_test <- t.test(Length~Condition, data = full_df_tidy)
+MT_test
+```
+
+Calculate the means and standard error:
+```{r}
+mean_MT <- full_df_tidy %>% 
+    group_by(Condition) %>% summarise(
+      meanlength = mean(Length),
+      selength = sd(Length)/sqrt(sum(!is.na(Length))),
+      n_observations = n()
+  
+       )
+mean_MT
+```
+
+Now let's graph this:
+```{r}
+# create barplot with error bars
+ggplot(full_df_tidy, aes(x = Condition, y = Length, fill = Condition))+
+     geom_boxplot(alpha = 0.5)+
+    theme_bw()+
+    theme(legend.position="none")+
+    xlab("Condition")+
+    ylab("Width of Microtubule Aggregates(\u00b5m)")
+     
+```
+
+
+
+
+
+
+

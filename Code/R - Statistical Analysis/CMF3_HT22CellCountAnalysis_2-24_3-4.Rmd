@@ -95,7 +95,7 @@ Now lets make the relationship a little more obvious between the two
 ```{r}
 library(scales)
 # create scatter plot with error bars
-ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condition))+
+full_media_plt <- ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
@@ -105,6 +105,11 @@ ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condit
     #theme(legend.position="none")+
     xlab("Trial Day")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+
+ggsave(filename = "full_media_plt_sem2.jpg",
+       plot = full_media_plt,
+       width = 7,
+       height = 4)
 ```
 ```{r}
 # calculate the growth rates using a for loop and store the results of the data in   a new dataframe

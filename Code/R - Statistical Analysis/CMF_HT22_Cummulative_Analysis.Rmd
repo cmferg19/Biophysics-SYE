@@ -79,7 +79,7 @@ Now lets make the relationship a little more obvious between the two
 ```{r}
 library(scales)
 # create scatter plot with error bars
-ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condition))+
+proliferation <- ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4', "dodgerblue"))+
@@ -88,14 +88,21 @@ ggplot(mean_counts, aes(Trial_Day, meancounts, color = Condition, group = Condit
     theme_bw()+
     #theme(legend.position="none")+
     xlab("Trial Day")+
-    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+    ylab(expression(Cell~Counts~(cells~"/"~mm^2)))+
+    annotate("text", x = c(2,3,4,5,6), y = c(100, 125, 180, 275, 370),
+           label = expression("*"))
+
+ggsave(filename = "cummulative_proliferation.jpg",
+       plot = proliferation,
+       width = 7,
+       height = 4)
 ```
 Now let's put together the growth rate data for each of these trials:
 ```{r}
 # calculate the growth rates using a for loop and store the results of the data in   a new dataframe
 
 #define the starting value of x (where we want the loop to start iterating through   our previous data set)
-  x <- 1
+x <- 1
 
 # make an empty data frame
 d <- data.frame()
@@ -124,17 +131,28 @@ mean_counts["Slope"] <- c(NA, 0.015625, 0.396412037037037, 1.91840277777778,
 0.774028784219002, 0.613309178743962, 2.58256944444444, 3.33275462962963, 
 4.24016203703704, 1.29398148148148)
 
+# find standard error of the growthrate data and add it to the mean counts data set
+
+se_growthrate <- 
+  sd(c(0.015625, 0.396412037037037, 1.91840277777778,
+1.91782407407407, 3.48611111111111, 3.88946759259259, 
+0.774028784219002, 0.613309178743962, 2.58256944444444, 3.33275462962963, 
+4.24016203703704, 1.29398148148148))/sqrt(12)
+
+se_growthrate
+
 ```
+
 
 Great, now that its added into the mean_counts data frame, we can use that to create a graph of the slopes:
 ```{r}
 # create scatter plot that shows the slopes of each of the conditions
 ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
-     geom_point()+
-     geom_line()+
-     scale_color_manual(values=c('#F8766D','#00BFC4'))+
-     #geom_errorbar(aes(ymin = standardcounts - secounts,
-                       #ymax = standardcounts + secounts), width = 0.1)+
+    geom_point()+
+    geom_line()+
+    scale_color_manual(values=c('#F8766D','#00BFC4'))+
+    geom_errorbar(aes(ymin = ifelse(Slope - 0.4205147 < 0, 0, Slope - 0.4205147),
+                      ymax = Slope + 0.4205147), width = 3)+
     geom_area(aes(fill = Condition, alpha = 0.2))+
     
     theme_bw()+
@@ -143,22 +161,34 @@ ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
     xlab("Time (Hours)")+
     ylab(expression("Growthrate (Cells/hour)")) +
   facet_grid(~Condition)
+  
+  
 ```
 
 ```{r}
 # create scatter plot that shows the slopes of each of the conditions
-ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
+growthrates_plt <- ggplot(mean_counts, aes(Hours, Slope, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      scale_color_manual(values=c('#F8766D','#00BFC4'))+
-
+     geom_errorbar(aes(ymin = ifelse(Slope - 0.4205147 < 0, 0, Slope - 0.4205147),
+                      ymax = Slope + 0.4205147), width = 3)+
     #geom_area(aes(fill = Condition, group = Condition), alpha = 0.2)+
     
     theme_bw()+
     scale_x_continuous(breaks=seq(0,144,by=24))+
     theme(legend.position="none")+
     xlab("Time (Hours)")+
-    ylab(expression("Growthrate (Cells/hour)")) 
+    ylab(expression("Growthrate (Cells/hour)"))+
+  annotate("text", x = c(72,96, 144), y = c(3.5,4.25, 4.60),
+           label = expression("*"))
+
+growthrates_plt
+  
+ggsave(filename = "growthrates_plt.jpg",
+       plot = growthrates_plt,
+       width = 5,
+       height = 4)
   
 ```
 
@@ -176,7 +206,7 @@ counts %>%
 Based on this, the data aren't as normally distributed as I originally thought. Days 1 and 2 look good but day 3 and beyond are looking more right skewed.  Despite this, a comparison of means should do the trick for us. 
 
 ```{r}
-model <- model <- aov(Cell_Count ~ Condition * Trial_Day, data = counts)
+model <- aov(Cell_Count ~ Condition * Trial_Day, data = counts)
 
 summary(model)
 ```
@@ -184,13 +214,64 @@ summary(model)
 From this it looks like there is a significant difference between the overall average growth of the magnetic and control cells.
 
 ```{r}
-pwc <- counts %>%
-  pairwise_t_test(
-    Cell_Count ~ Trial_Day, paired = TRUE,
-    p.adjust.method = "bonferroni"
-    )
+# two sample t test for overall growth between the conditions
+pwc <- t.test(meancounts~Condition, data = mean_counts)
 pwc
 ```
+split the days up
+```{r}
+Day1 <- counts %>%
+  filter(Trial_Day == "Day 1")
+
+Day2 <- counts %>%
+  filter(Trial_Day == "Day 2")
+
+Day3 <- counts %>%
+  filter(Trial_Day == "Day 3")
+
+Day4 <- counts %>%
+  filter(Trial_Day == "Day 4")
+
+Day5 <- counts %>%
+  filter(Trial_Day == "Day 5")
+
+Day6 <- counts %>%
+  filter(Trial_Day == "Day 6")
+
+Day7 <- counts %>%
+  filter(Trial_Day == "Day 7")
+```
+
+Run the models:
+```{r}
+day1t <- t.test(Cell_Count~Condition, data = Day1)
+day1t
+
+day2t <- t.test(Cell_Count~Condition, data = Day2)
+day2t
+
+day3t <- t.test(Cell_Count~Condition, data = Day3)
+day3t
+
+day4t <- t.test(Cell_Count~Condition, data = Day4)
+day4t
+
+day5t <- t.test(Cell_Count~Condition, data = Day5)
+day5t
+
+day6t <- t.test(Cell_Count~Condition, data = Day6)
+day6t
+
+day7t <- t.test(Cell_Count~Condition, data = Day7)
+day7t
+```
+
+Now let's do it for the growth rates:
+The formula for a two sample t-test is (mean1-mean2)/ (se^2(1/n1 +1/n2))
+
+
+
+
 
 
 

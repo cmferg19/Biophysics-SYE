@@ -98,7 +98,7 @@ t.test(Cells ~ Condition, data = after)
 
 ```{r}
 # create scatter plot with error bars
-ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Condition))+
+CO2_plt <- ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Condition))+
      geom_point()+
      geom_line()+
      geom_errorbar(aes(ymin = meancounts - secounts,
@@ -107,4 +107,9 @@ ggplot(mean_counts, aes(Exposure, meancounts, color = Condition, group = Conditi
     #theme(legend.position="none")+
     xlab("Count")+
     ylab(expression(Cell~Counts~(cells~"/"~mm^2)))
+
+ggsave(filename = "CO2_plt_sem1.jpg",
+       plot = CO2_plt,
+       width = 7,
+       height = 5)
 ```
