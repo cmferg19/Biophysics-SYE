@@ -1,0 +1,153 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Import the libraries that we need:
+```{r}
+# clear the environment
+rm(list = ls())
+
+# import the libraries that we will use
+library(ggplot2)
+library(dplyr)
+library(here)
+library(ggfortify)
+library(readr)
+
+```
+
+Import the data:
+```{r}
+LDH1 <- read_csv(here("Data","CMF8_LDH_4-25.csv"))
+
+LDH2 <- read_csv(here("Data", "CMF8_LDH_4-26.csv"))
+
+LDH3 <- read_csv(here("Data",  "CMF8_LDH_4-27.csv"))
+```
+The first thing that I need to do is subtract the 680nm (noise) from the 490 absorbance reading.  I will combine all of the data frames together and then do that in one step
+
+```{r}
+# chop down LDH1 so we can bind these together
+LDH1 <- LDH1 %>%
+  select(1:7)
+
+# combine the data frames together
+full_LDH <- bind_rows("Day 1" = LDH1,
+          "Day 2" = LDH2,
+          "Day 3" = LDH3,
+          .id = "Day")
+
+```
+
+Now lets subtract the 680 from the 490.  I will be doing this for the blanked and the raw data
+
+```{r}
+full_LDH_tidy <-
+  full_LDH %>%
+  mutate(Adjusted_Raw = Read_680 - Read_490,
+         Adjusted_Blank = Blank_Read_680 - Blank_Read_490,
+         Name = case_when(Name %in% c("Meida") ~ "Media"
+        ,TRUE ~ Name),
+         Name = case_when(Name %in% c("Control 1", "Control 2") ~ "Control Cells", TRUE ~ Name),
+        Name = case_when(Name %in% c("BF 1", "BF 2")~"Magnetic Field Cells", TRUE ~ Name),
+        Name = case_when(Name %in% c("BF Media") ~ "Magnetic Field Media", TRUE ~ Name),
+        Name = case_when(Name %in% c("Positive")~ "Positive LDH Control", TRUE~Name)
+        ) 
+  #slice(-52, -98)
+```
+
+Alright, lets subset this to isolate the before and after absorbances of the raw and blanked data for each day:
+
+```{r}
+LDH_full_before <-
+  full_LDH_tidy %>%
+  filter(Well_ID == "BLK" | Well_ID == "CTL2" | Well_ID == "SPL1"| Well_ID == "SPL2" |Well_ID == "SPL3" | Well_ID == "SPL4" | Well_ID == "SPL5")
+
+LDH_full_after <-
+  full_LDH_tidy %>%
+  filter(Well_ID == "BLK" | Well_ID == "CTL2" | Well_ID == "SPL6"| Well_ID == "SPL7" | Well_ID == "SPL8" | Well_ID == "SPL9" | Well_ID == "SPL 10")
+```
+
+Now lets try and graph these
+```{r}
+# calculate the means and the standard deviation of the data
+LDH_before_means <-
+  LDH_full_before %>%
+  group_by(Day, Name) %>%
+  summarise(mean_absorbance_raw = mean(Adjusted_Raw),
+            se_absorbance_raw = sd(Adjusted_Raw)/sqrt(sum(!is.na(Adjusted_Raw))),
+            mean_absorbance_blank = mean(Adjusted_Blank),
+            se_absorbance_blank = sd(Adjusted_Blank)/sqrt(sum(!is.na(Adjusted_Blank)))) %>%
+  mutate(mean_absorbance_raw = abs(mean_absorbance_raw),
+         se_absorbance_raw = abs(se_absorbance_raw),
+         mean_absorbance_blank = abs(mean_absorbance_blank),
+         se_absorbance_blank = abs(se_absorbance_blank))
+
+
+
+```
+
+Graph for before exposure:
+```{r}
+ggplot(LDH_before_means, aes(Day, mean_absorbance_blank, color = Name, group = Name))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = mean_absorbance_blank - se_absorbance_blank,
+                       ymax = mean_absorbance_blank + se_absorbance_blank), width = 0.1)+
+    theme_bw()+
+    labs(x = "Trial Day", y="Absorbance", color = "Sample")
+```
+Now lets repeat the process for after magnetic field exposure:
+```{r}
+# calculate the means and the standard deviation of the data
+LDH_after_means <-
+  LDH_full_after %>%
+  group_by(Day, Name) %>%
+  summarise(mean_absorbance_raw = mean(Adjusted_Raw),
+            se_absorbance_raw = sd(Adjusted_Raw)/sqrt(sum(!is.na(Adjusted_Raw))),
+            mean_absorbance_blank = mean(Adjusted_Blank),
+            se_absorbance_blank = sd(Adjusted_Blank)/sqrt(sum(!is.na(Adjusted_Blank)))) %>%
+  mutate(mean_absorbance_raw = abs(mean_absorbance_raw),
+         se_absorbance_raw = abs(se_absorbance_raw),
+         mean_absorbance_blank = abs(mean_absorbance_blank),
+         se_absorbance_blank = abs(se_absorbance_blank))
+
+```
+
+Graph:
+```{r}
+ggplot(LDH_after_means, aes(Day, mean_absorbance_blank, color = Name, group = Name))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = mean_absorbance_blank - se_absorbance_blank,
+                       ymax = mean_absorbance_blank + se_absorbance_blank), width = 0.1)+
+    theme_bw()+
+    labs(x = "Trial Day", y="Absorbance", color = "Sample")
+```
+Now lets take a look at the before and after absorbances for these (and seperate them by day):
+```{r}
+library(forcats)
+# join the summary DFs
+LDH_means <-
+  bind_rows("Before" = LDH_before_means,
+            "After" = LDH_after_means,
+            .id = "Sample_Time") %>%
+  mutate(Sample_Time = fct_relevel(Sample_Time, c("Before","After")))
+```
+
+Graph:
+```{r}
+ggplot(LDH_means, aes(Sample_Time, mean_absorbance_blank, color = Name, group = Name))+
+     geom_point()+
+     geom_line()+
+     geom_errorbar(aes(ymin = mean_absorbance_blank - se_absorbance_blank,
+                       ymax = mean_absorbance_blank + se_absorbance_blank), width = 0.1)+
+  facet_wrap(~Day)+
+    theme_bw()+
+    labs(x = "Sample Time with Respect to Exposure", y="Absorbance", color = "Sample")
+```
+
+
+
+

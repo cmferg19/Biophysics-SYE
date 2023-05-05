@@ -1,0 +1,118 @@
+---
+title: "HT22 Cell Protocol Optimization Analysis"
+output: html_notebook
+---
+
+This is an analysis of the data that Dr. Pirbhai collected over the course of three 5 day trials where cells were exposed to the following conditions:
+
+control 0	= incubator	
+control 1	= every 1 day	  30min
+control 2	= every 2 day 	30min
+Bfield 1	= every 1 day	  30min
+Bfield 2	= every 2 day 	30min
+
+First I will set up the environment and then load the packages I need:
+```{r}
+rm(list = ls())
+
+library(here)
+library(tidyverse)
+```
+
+Great, now let's import the data:
+```{r}
+raw <- read_csv(here("Data","MP1_HT22_optimization.csv"))
+```
+Now I am going to have to clean this up a bit to get it in a form that will be a little easier to work with:
+```{r}
+counts1 <- raw %>%
+  pivot_longer(cols = 2:16,
+               names_to = "Day",
+               values_to = "Cell_Count")%>%
+  mutate(Day = case_when(Day %in% c("Day 1...2", "Day 1...12", "Day 1...7") ~ "Day 1"
+        ,TRUE ~ Day),
+         Day = case_when(Day %in% c("Day 2...3", "Day 2...8", "Day 2...13") ~ "Day 2", TRUE ~ Day),
+        Day = case_when(Day %in% c("Day 3...4", "Day 3...9", "Day 3...14")~ "Day 3", TRUE ~ Day),
+        Day = case_when(Day %in% c("Day 4...5", "Day 4...10", "Day 4...15") ~ "Day 4", TRUE ~ Day),
+        Day = case_when(Day %in% c("Day 5...6", "Day 5...11", "Day 5...16")~ "Day 5", TRUE~Day),
+        Condition = case_when(Condition %in% c("Control 1", "Control 2")~ "Control Exposure", TRUE ~Condition),
+        Condition = case_when(Condition %in% c("Bfield 1", "Bfield 2")~"Mangetic Field Exposure", TRUE~Condition),
+        Condition = case_when(Condition %in% c("Control 0")~"No Exposure", TRUE~Condition)
+        ) 
+  
+  
+```
+
+Ok, now its ready to go
+```{r}
+mean_counts1 <- counts1 %>% 
+  filter(!is.na(Day), !is.na(Condition), !is.na(Cell_Count)) %>%
+    group_by(Condition,Day) %>% summarise(
+      meancounts = mean(Cell_Count),
+      secounts = sd(Cell_Count)/sqrt(sum(!is.na(Cell_Count)))
+  
+       )
+```
+
+Let's graph it:
+```{r}
+ggplot(mean_counts1, aes(Day, meancounts, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     scale_color_manual(values=c('#F8766D','#00BFC4', "dodgerblue"))+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    #theme(legend.position="none")+
+    xlab("Trial Day")+
+    ylab("Cell Counts")
+   # annotate("text", x = c(2,3,4,5,6), y = c(100, 125, 180, 275, 370),
+           #label = expression("*"))
+```
+
+```{r}
+counts2 <- raw %>%
+  pivot_longer(cols = 2:16,
+               names_to = "Day",
+               values_to = "Cell_Count")%>%
+  mutate(Day = case_when(Day %in% c("Day 1...2", "Day 1...12", "Day 1...7") ~ "Day 1"
+        ,TRUE ~ Day),
+         Day = case_when(Day %in% c("Day 2...3", "Day 2...8", "Day 2...13") ~ "Day 2", TRUE ~ Day),
+        Day = case_when(Day %in% c("Day 3...4", "Day 3...9", "Day 3...14")~ "Day 3", TRUE ~ Day),
+        Day = case_when(Day %in% c("Day 4...5", "Day 4...10", "Day 4...15") ~ "Day 4", TRUE ~ Day),
+        Day = case_when(Day %in% c("Day 5...6", "Day 5...11", "Day 5...16")~ "Day 5", TRUE~Day),
+        Condition = case_when(Condition %in% c("Control 1")~ "Control Exposure Every Day", TRUE ~Condition),
+        Condition = case_when(Condition %in% c("Control 2")~ "Control Exposure Every 2 Days", TRUE ~Condition),
+        Condition = case_when(Condition %in% c("Bfield 1")~"Mangetic Field Exposure Every Day", TRUE~Condition),
+        Condition = case_when(Condition %in% c("Bfield 2")~"Mangetic Field Exposure Every 2 Days", TRUE~Condition),
+        Condition = case_when(Condition %in% c("Control 0")~"No Exposure", TRUE~Condition)
+        ) 
+```
+
+lets break this down:
+```{r}
+mean_counts2 <- counts2 %>% 
+  filter(!is.na(Day), !is.na(Condition), !is.na(Cell_Count)) %>%
+    group_by(Condition,Day) %>% summarise(
+      meancounts = mean(Cell_Count),
+      secounts = sd(Cell_Count)/sqrt(sum(!is.na(Cell_Count)))
+  
+       )
+```
+
+Graph it:
+```{r}
+ggplot(mean_counts2, aes(Day, meancounts, color = Condition, group = Condition))+
+     geom_point()+
+     geom_line()+
+     #scale_color_manual(values=c('#F8766D','#00BFC4', "dodgerblue"))+
+     geom_errorbar(aes(ymin = meancounts - secounts,
+                       ymax = meancounts + secounts), width = 0.1)+
+    theme_bw()+
+    #theme(legend.position="none")+
+    labs(x ="Trial Day", y = "Cell Counts")
+    
+```
+
+
+
